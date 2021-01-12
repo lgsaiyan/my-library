@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <!--<link rel="shortcut icon" type="image/png" href="img/favicon.png"> -->
+        
+        <title>myLibrary</title>
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                    <h1 class="logo">
+                        <img class="logo__svg" src="img/svg/books.svg"></img>
+                        my<span class="italics">Library</span>
+                    </h1>
+                    <div class="search-bar">
+                        <input type="text" class="search-bar__input" placeholder="Search for books here...">
+                        <button class="search-bar__btn">
+                            <img class="search-bar__icon" src="img/svg/search.svg"></img>  
+                        </button>  
+                    </div>
+                    <div class="Sign-out btn">Sign-out</div>
+            </header>
+
+            <div class="content">
+                <div class="sort">
+                    <div class="sort__menu btn">
+                       Sort by: date added  
+                    </div>
+                    <svg class="sort__btn"><use xlink:href="img/sprite.svg#icon-circle-up"></use></svg>
+                    <svg class="sort__btn"><use xlink:href="img/sprite.svg#icon-circle-down"></use></svg>
+                </div>
+                <div class="books">
+                    Book cards here
+                </div>
+                <div class="pages">
+                    Pagination here
+                </div>
+
+            </div>
+            <footer class="footer">
+                <div class="total">
+                    Total Books: 69
+                </div>
+                <br />
+                <div class="copy-right">
+                    &copy; Copyright Levon Saiyan 2021
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
