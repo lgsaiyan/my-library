@@ -22,7 +22,7 @@
 $bp-largest: 75em;     // 1200px
 $bp-large: 68.75em;    // 1100px
 $bp-medium: 56.25em;   // 900px
-$bp-medium-small: 50em;  //800px
+$bp-medium-small: 43.75em;  //700px
 $bp-small: 37.5em;     // 600px
 $bp-smallest: 31.25em; // 500px
 
@@ -55,6 +55,9 @@ body {
     min-height: 100vh;
 }
 
+/// Layout //////////////////////////////////// 
+/////////////////// 
+
 .container {
     background-color: var(--color-grey-light-1);
     box-shadow: var(--shadow-dark);
@@ -78,33 +81,29 @@ body {
     background-color: #fff;
     border-bottom: var(--line);
     grid-row: top-start / top-end;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
 
-    @media only screen and (max-width: $bp-medium-small) {
-        display: grid;
-        grid-template-rows: [head-start] min-content [head-end search-start] min-content [search-end];
-        grid-row:auto;
-        //grid-template-columns: 3;
-    }
-
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-columns: max-content 1fr max-content;
     align-items: center;
-    justify-content: space-between;
-    margin: 0 2rem;
-}
+    justify-items: center;
 
+    // @media only screen and (max-width: $bp-medium-small) {
+    // }
+}
 
 .content {
     grid-row: content-start / content-end;
 
     display: grid;
-    grid-template-rows: max-content max-content max-content;
-    gap: 1rem;
-    justify-content: center;
+    grid-template-rows: max-content min-content max-content;
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+
+    //margin: 0 2rem;
 }
-
-
 
 .footer {
     padding: 3rem 0;
