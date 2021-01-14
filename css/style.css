@@ -141,14 +141,16 @@ body {
 
 .library {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: auto;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 3rem;
-  padding: 0 2rem; }
+  padding: 0 2rem;
+  width: 100%;
+  justify-items: center; }
   .library__book {
     border: 1px solid var(--color-grey-dark-2);
     border-radius: 4px;
     background-color: white;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -161,10 +163,10 @@ body {
     .library__book:hover {
       border: 1px solid var(--color-primary-dark);
       transform: translateY(-3px);
-      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
       color: var(--color-primary-dark); }
     .library__book:hover .library__book__img-container > img {
-      width: 106%; }
+      width: 110%; }
     .library__book__img-container {
       width: 100%;
       height: 65%;
@@ -179,7 +181,9 @@ body {
         transition: all 0.2s; }
     .library__book__title {
       font-size: 1.6rem;
-      font-weight: 600; }
+      font-weight: 600;
+      width: 100%;
+      text-align: center; }
     .library__book__rating {
       padding-bottom: 1rem; }
 
@@ -211,6 +215,7 @@ body {
 
 .btn {
   max-width: max-content;
+  background-color: white;
   border: 1px solid var(--color-grey-dark-2);
   padding: 1rem;
   border-radius: 3px;

@@ -110,15 +110,17 @@
 .library {
     //min-height: 50vh;
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: auto; //repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 3rem;
     padding: 0 2rem;
+    width: 100%;
+    justify-items:center ;
 
     &__book {
         border: 1px solid var(--color-grey-dark-2);
         border-radius: 4px;
         background-color: white;
+        box-shadow: 0 0 2rem rgba(0,0,0, .1);
         cursor: pointer;
 
         display: flex;
@@ -133,13 +135,18 @@
         &:hover {
             border: 1px solid var(--color-primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 0 2rem rgba(0,0,0, .1);
+            box-shadow: 0 0 2rem rgba(0,0,0, .2);
             color: var(--color-primary-dark);
         }
 
         &:hover &__img-container>img {
-            width: 106%;
+            width: 110%;
         }
+
+        // &:hover &__title {
+        //     color:var(--color-primary);
+        //     background-color: var(--color-grey-dark-1);
+        // }
 
 
 
@@ -166,7 +173,8 @@
         &__title {
             font-size: 1.6rem;
             font-weight: 600;
-
+            width: 100%;
+            text-align: center;
         }
 
         &__author {
@@ -232,6 +240,7 @@
 
 .btn {
     max-width: max-content;
+    background-color: white;
 
     &:hover,
     &:active {
