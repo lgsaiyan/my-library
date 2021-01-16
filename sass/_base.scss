@@ -52,7 +52,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 
-    min-height: 100vh;
+    min-height: calc(100vh-6rem);  
+
+    // @media only screen and (max-width: $bp-medium-small) {
+    //     min-height: calc(100vh-6rem);     
+    // }
 }
 
 /// Layout //////////////////////////////////// 
@@ -71,9 +75,11 @@ body {
     gap: 1rem;
     overflow: hidden;
 
-    // @media only screen and (max-width: $bp-medium-small) {
-    //     grid-template-rows: [top-start] min-content [top-end search-start] min-content [search-end content-start] min-content [content-end footer-start] min-content [footer-end];
-    // }
+    @media only screen and (max-width: $bp-medium-small) {
+        margin: 0 0;
+        width: 100vw;
+        border-radius: 0;        
+    }
 }
 
 .header {
@@ -114,4 +120,20 @@ body {
     background-color: var(--color-grey-dark-1);
     color: white;
     grid-row: footer-start / footer-end;
+}
+
+/// Book Page ///////////////////////////////////////////////// 
+//////////////////// 
+
+.content__book {
+    grid-row: content-start / content-end;
+
+    display: grid;
+    grid-template-columns: minmax(auto, 1fr) minmax(auto, 1fr);
+    grid-template-rows: repeat(4, minmax(min-content, max-content));
+    row-gap: 1rem;
+    column-gap: 2rem;
+    width: 100%;
+    padding: 0 2rem;
+
 }

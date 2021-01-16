@@ -7,6 +7,7 @@
     font-size: 3rem;
     color: black;
     grid-row: 1;
+    cursor: pointer;
 
     // @media only screen and (max-width: $bp-medium-small) {
     //     grid-row: head-start / head-end;
@@ -107,6 +108,42 @@
 /// Books /////////////////////////////////////////////////////
 /////////////
 
+.sort {
+    display: flex;
+    align-items: center;  
+    padding-top: 1rem;
+
+
+
+    &__menu {
+        padding-right: 1rem;
+        // cursor: pointer;
+        // border: 1px solid var(--color-grey-dark-2);
+        padding: 0.5rem;
+        // border-radius: 3px;
+        
+
+    }
+
+    &__btn {
+        height: 2.8rem;
+        width: 2.8rem;
+        padding-left: 0.7rem;
+        fill: var(--color-grey-dark-2);
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            fill: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            fill: var(--color-primary-dark)
+        }
+    }
+}
+
 .library {
     //min-height: 50vh;
     display: grid;
@@ -148,8 +185,6 @@
         //     background-color: var(--color-grey-dark-1);
         // }
 
-
-
         &__img-container {
             width: 100%;
             height: 65%;
@@ -165,8 +200,6 @@
                 transition: all 0.2s;
                 //object-fit: fill;
             }
-            
-
 
         }
 
@@ -177,43 +210,56 @@
             text-align: center;
         }
 
-        &__author {
-
-        }
-
         &__rating {
             padding-bottom: 1rem;
 
         }
+
     }
 }
 
 
+.pages {
+    padding-bottom: 1rem;
+}
 
-.sort {
+/////////////////////////////////////////////////////////// 
+/// Detail View ///////////////////// 
+
+.back {
+
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
     display: flex;
-    align-items: center;  
-    padding-top: 1rem;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 2rem;
 
+    &::before,
+    &::after {
+        content: "";
+        background-color: var(--color-grey-dark-3);
+        height: 1px;
+        width: 40%;
+        align-self: center;
+    }
 
+    &::before {
+        margin-right: 3rem;
+    }
 
-    &__menu {
-        padding-right: 1rem;
-        // cursor: pointer;
-        // border: 1px solid var(--color-grey-dark-2);
-        padding: 0.5rem;
-        // border-radius: 3px;
-        
-
+    &::after {
+        margin-left: 3rem;
     }
 
     &__btn {
-        height: 2.8rem;
-        width: 2.8rem;
-        padding-left: 0.7rem;
+        height: 4rem;
+        width: 4rem;
         fill: var(--color-grey-dark-2);
         transition: all 0.2s;
         cursor: pointer;
+
+        
 
         &:hover {
             fill: var(--color-primary);
@@ -226,9 +272,170 @@
     }
 }
 
-.pages {
-    padding-bottom: 1rem;
+.img {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+
+    justify-self: end;
+    overflow: hidden;
+
+    height: 26rem;
+    width: 20rem;
+    display: flex;
+    border-radius: 3px;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0, .3);
+
+
+    img {
+        width: 100%;
+        align-self: center;
+       
+    }
+
 }
+
+.detail {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    padding: 0 3rem;
+    
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 600;
+    }       
+
+}
+
+.rating {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 0.25rem 0;
+    justify-self: center;
+    width: 50%;
+
+    border: 1px solid var(--color-grey-dark-3);
+    border-radius: 3px;
+    transition: all 0.2s;
+
+    @media only screen and (max-width: $bp-medium-small) {
+        flex-direction: column;   
+        justify-content: center; 
+    }
+
+    &:hover {
+        border: 1px solid var(--color-primary-light);
+        background-color: white;
+    }
+
+    &__text {
+        padding-left: 1rem;
+    }
+
+}
+
+/// Star ratings Component /// 
+
+.rate {
+    align-items: center;
+    padding-right: 0.5rem;
+}
+
+.rate:not(:checked) > input {
+    position:absolute;
+    //top:-9999px;
+    visibility: hidden
+}
+
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.rate:not(:checked) > label:before {
+    //content: '★  ';
+    content: ' \2605 ';
+    padding-right: 2rem;
+}
+
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+//////////
+
+.add {
+    background-color: white;
+    grid-row: 4 / 5;
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: center;
+    padding: 1rem 0;
+    //min-width: 20rem;
+    width: 50%;
+
+    cursor: pointer;
+
+    border: 1px solid var(--color-grey-dark-3);
+    border-radius: 3px;
+    transition: all 0.2s;
+
+    &:hover {
+        box-shadow: 0 0 2rem rgba(0,0,0, .1);
+        transform: translateY(-1px);
+        border: 1px solid rgb(51, 201, 71);
+    }
+
+    &:hover svg {
+        fill: rgb(51, 201, 71);
+    }
+
+    &:active {
+        background-color: var(--color-grey-dark-1);
+        color: rgb(51, 201, 71);
+    }
+
+    &__text {
+        padding: 0 1rem;
+        padding-right: 2rem;
+    }
+
+    svg {
+        height: 2.75rem;
+        width:  2.75rem;
+        fill: var(--color-grey-dark-3);
+        padding-right: 1rem;
+        
+    }
+}
+
 
 
 /// Utilities ///////////////////////////////////////////// 
@@ -247,7 +454,7 @@
         outline:none
     }
 
-    border: 1px solid var(--color-grey-dark-2);
+    border: 1px solid var(--color-grey-dark-3);
     padding: 1rem;
     border-radius: 3px;
     cursor: pointer;
