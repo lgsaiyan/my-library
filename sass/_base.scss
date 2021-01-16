@@ -40,6 +40,10 @@ $bp-smallest: 31.25em; // 500px
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+
+    @media only screen and (max-width: $bp-smallest) {
+        font-size: 55%;
+    }
 }
 
 body {
@@ -59,7 +63,7 @@ body {
     // }
 }
 
-/// Layout //////////////////////////////////// 
+/// General and Home Layout //////////////////////////////////// 
 /////////////////// 
 
 .container {
@@ -99,17 +103,7 @@ body {
     // }
 }
 
-.content {
-    grid-row: content-start / content-end;
-
-    display: grid;
-    grid-template-rows: max-content min-content max-content;
-    gap: 2rem;
-    justify-items: center;
-    align-items: center;
-
-    //margin: 0 2rem;
-}
+/// See specfiic page scss files for content layout /// 
 
 .footer {
     padding: 3rem 0;
@@ -120,20 +114,4 @@ body {
     background-color: var(--color-grey-dark-1);
     color: white;
     grid-row: footer-start / footer-end;
-}
-
-/// Book Page ///////////////////////////////////////////////// 
-//////////////////// 
-
-.content__book {
-    grid-row: content-start / content-end;
-
-    display: grid;
-    grid-template-columns: minmax(auto, 1fr) minmax(auto, 1fr);
-    grid-template-rows: repeat(4, minmax(min-content, max-content));
-    row-gap: 1rem;
-    column-gap: 2rem;
-    width: 100%;
-    padding: 0 2rem;
-
 }

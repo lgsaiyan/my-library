@@ -14,20 +14,20 @@
     <body>
         <div class="container">
             <header class="header">
-                    <h1 class="logo">
-                        <img class="logo__svg" src="img/svg/books.svg"></img>
-                        my<span class="italics">Library</span>
-                    </h1>
-                    <div class="search-bar">
-                        <input type="text" class="search-bar__input" placeholder="Search for books here...">
-                        <button class="search-bar__btn">
-                            <img class="search-bar__icon" src="img/svg/search.svg"></img>  
-                        </button>  
-                    </div>
-                    <div class="Sign-out btn sign-out__btn">Sign-out</div>
+                <h1 class="logo">
+                    <svg class="logo__svg"><use xlink:href="img/sprite.svg#icon-books"></use></svg>
+                    myLibrary
+                </h1>
+                <div class="search-bar">
+                    <input type="text" class="search-bar__input" placeholder="Search for books here...">
+                    <button class="search-bar__btn">
+                        <img class="search-bar__icon" src="img/svg/search.svg"></img>  
+                    </button>  
+                </div>
+                <div class="Sign-out btn sign-out__btn">Sign-out</div>
             </header>
 
-            <div class="content__book">                
+            <div class="content__book">  <!-- Detail Page Content -->              
                 <div class="back">
                     <svg class="back__btn"><use xlink:href="img/sprite.svg#icon-circle-left"></use></svg>
                 </div>
@@ -70,16 +70,7 @@
                         <label for="star2" title="text">2 stars</label>
                         <input type="radio" id="star1" name="rate" value="1" />
                         <label for="star1" title="text">1 star</label>
-                      </div>
-                      <!--
-                    <div class="rating__stars">
-                        <svg class="rating__stars__icon--1"><use xlink:href="img/sprite.svg#icon-star-full"></use></svg>
-                        <svg class="rating__stars__icon--2"><use xlink:href="img/sprite.svg#icon-star-full"></use></svg>
-                        <svg class="rating__stars__icon--3"><use xlink:href="img/sprite.svg#icon-star-full"></use></svg>
-                        <svg class="rating__stars__icon--4"><use xlink:href="img/sprite.svg#icon-star-full"></use></svg>
-                        <svg class="rating__stars__icon--5"><use xlink:href="img/sprite.svg#icon-star-full"></use></svg>
-                    </div>-->
-                    
+                      </div>                    
                 </div>
 
                 <div class="add">
@@ -88,10 +79,14 @@
                     </div>
                     <svg class="check"><use xlink:href="img/sprite.svg#icon-checkmark"></use></svg>
                 </div>
-
+<!--
                 <div class="remove">
-                    Remove button
-                </div>
+                    <div class="remove__text">
+                       Remove from library 
+                    </div>
+                    <svg class="delete"><use xlink:href="img/sprite.svg#icon-cross"></use></svg>
+                </div>-->
+
             </div>
 
             <footer class="footer">
