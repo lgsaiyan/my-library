@@ -63,7 +63,7 @@ body {
     // }
 }
 
-/// General and Home Layout //////////////////////////////////// 
+/// General Layout //////////////////////////////////// 
 /////////////////// 
 
 .container {
@@ -71,13 +71,14 @@ body {
     box-shadow: var(--shadow-dark);
     margin: 2rem auto;
     width: 85vw;
-    //min-height: 85vh;
+    min-height: calc(100vh - 4rem);
     border-radius: 4px;
 
     display: grid;
     grid-template-rows: [top-start] min-content [top-end content-start] min-content [content-end footer-start] min-content [footer-end];
     gap: 1rem;
     overflow: hidden;
+    align-content: center;
 
     @media only screen and (max-width: $bp-medium-small) {
         margin: 0 0;

@@ -8,7 +8,7 @@
     grid-template-rows: max-content min-content max-content;
     gap: 2rem;
     justify-items: center;
-    align-items: center;
+    align-content: center;
 }
 
 /// Header Components //////////////////////////
@@ -23,13 +23,9 @@
     cursor: pointer;
     transition: all 0.2s;
 
-    // @media only screen and (max-width: $bp-medium-small) {
-    //     grid-row: head-start / head-end;
-    // }
-
     &:hover svg {
         transform: translateY(5px);
-        fill: var(--color-primary-dark);
+        fill: var(--color-primary);
     }
 
     svg {
@@ -135,34 +131,9 @@
     align-items: center;  
     padding-top: 1rem;
 
-
-
     &__menu {
         padding-right: 1rem;
-        // cursor: pointer;
-        // border: 1px solid var(--color-grey-dark-2);
         padding: 0.5rem;
-        // border-radius: 3px;
-        
-
-    }
-
-    &__btn {
-        height: 2.8rem;
-        width: 2.8rem;
-        padding-left: 0.7rem;
-        fill: var(--color-grey-dark-2);
-        transition: all 0.2s;
-        cursor: pointer;
-
-        &:hover {
-            fill: var(--color-primary);
-            transform: translateY(-1px);
-        }
-
-        &:active {
-            fill: var(--color-primary-dark)
-        }
     }
 }
 
@@ -202,9 +173,8 @@
             width: 110%;
         }
 
-        // &:hover &__title {
-        //     color:var(--color-primary);
-        //     background-color: var(--color-grey-dark-1);
+        // &:hover &__rating__star {
+            
         // }
 
         &__img-container {
@@ -222,7 +192,6 @@
                 transition: all 0.2s;
                 //object-fit: fill;
             }
-
         }
 
         &__title {
@@ -230,11 +199,19 @@
             font-weight: 600;
             width: 100%;
             text-align: center;
+            padding-top: 0.5rem;
         }
 
         &__rating {
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
 
+            &__star {
+                color: #ffc700;
+                font-size: 2.6rem;
+            }
         }
 
     }
@@ -243,18 +220,18 @@
 
 .pages {
     padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+
+    &__current {
+        padding-left: 1.4rem;
+        padding-right: 0.7rem;
+    }
 }
-
-
-
 
 
 /// Utilities ///////////////////////////////////////////// 
 ///////////////////// 
-
-.italic {
-    font-style: italic;
-}
 
 .btn {
     max-width: max-content;
@@ -279,6 +256,24 @@
     &:active {
         background-color: var(--color-grey-dark-1);
         color: white;
+    }
+}
+
+.circle-btn {
+    height: 2.8rem;
+    width: 2.8rem;
+    padding-left: 0.7rem;
+    fill: var(--color-grey-dark-2);
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        fill: var(--color-primary);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        fill: var(--color-primary-dark)
     }
 }
 

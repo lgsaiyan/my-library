@@ -1,2 +1,86 @@
 /// Sign-in Layout ///////////////////////////////////////////////// 
 //////////////////// 
+
+.content__sign-in {
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 0;
+
+    overflow: hidden;
+
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(0,0,0, 0.7),
+        rgba(0,0,0, 0.7)),
+    url(../img/library.jpeg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 20%, 100% 0, 100% 30rem, 0 100%);
+
+
+}
+
+.logo__sign-in {
+    padding-bottom: 3rem;
+    font-family: 'Lobster', cursive;
+    font-size: 3rem;
+    color: white;
+    grid-row: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover svg {
+        transform: translateY(5px);
+        fill: var(--color-primary);
+    }
+
+    svg {
+        text-align: center;
+        height: 3rem;
+        width: 3rem;
+        transition: all 0.2s;
+        fill: white;
+    }
+}
+
+
+.login {
+    margin: 1rem;
+    width: 50%;
+    max-width: 22rem;
+    min-width: 15rem;
+    display: flex;
+    justify-content: space-between;
+
+    @media only screen and (max-width: $bp-medium-small) {
+        font-size: 1.1rem;       
+    }
+    
+
+    svg {
+        height: 2rem;
+        width: 2rem;
+        transition: all 0.2s;
+    }
+}
+
+.login:hover .google__svg {
+    fill: red;
+}
+
+.login:hover .guest__svg {
+    fill: rgb(80, 80, 87);
+}
+
+.sign-in-image {
+   position: relative;
+   // display: block;
+    width: 100%;
+    //height: 50rem;
+    //z-index: 0;
+    overflow: hidden;
+
+}
