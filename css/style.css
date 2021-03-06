@@ -9,8 +9,8 @@
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
-  --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
-  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2); }
 
 * {
@@ -30,7 +30,7 @@ html {
       font-size: 55%; } }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   line-height: 1.6;
   font-size: 1.4rem;
@@ -45,7 +45,6 @@ body {
   box-shadow: var(--shadow-dark);
   margin: 2rem auto;
   width: 85vw;
-  min-height: calc(100vh - 4rem);
   border-radius: 4px;
   display: grid;
   grid-template-rows: [top-start] min-content [top-end content-start] min-content [content-end footer-start] min-content [footer-end];
@@ -89,12 +88,13 @@ body {
   align-content: center; }
 
 .logo {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 3rem;
   color: black;
   grid-row: 1;
   cursor: pointer;
-  transition: all 0.2s; }
+  transition: all 0.2s;
+  text-decoration: none; }
   .logo:hover svg {
     transform: translateY(5px);
     fill: var(--color-primary); }
@@ -108,7 +108,8 @@ body {
   grid-row: 1;
   display: flex; }
   .sign-out__btn {
-    justify-self: end; }
+    justify-self: end;
+    text-decoration: none; }
 
 .search-bar {
   grid-row: 1;
@@ -133,7 +134,7 @@ body {
     border: none;
     background-color: var(--color-grey-light-2);
     border-radius: 10px;
-    padding: .7rem 2rem;
+    padding: 0.7rem 2rem;
     transition: all 0.2s;
     margin-right: -3.5rem;
     width: 85%; }
@@ -166,6 +167,7 @@ body {
     padding: 0.5rem; }
 
 .library {
+  min-height: calc(100vh - 40.75rem);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 3rem;
@@ -173,7 +175,6 @@ body {
   width: 100%;
   justify-items: center; }
   .library__book {
-    border: 1px solid var(--color-grey-dark-2);
     border-radius: 4px;
     background-color: white;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
@@ -187,7 +188,6 @@ body {
     overflow: hidden;
     transition: all 0.2s; }
     .library__book:hover {
-      border: 1px solid var(--color-primary-dark);
       transform: translateY(-3px);
       box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
       color: var(--color-primary-dark); }
@@ -235,7 +235,7 @@ body {
   padding: 1rem;
   border-radius: 3px;
   cursor: pointer;
-  transition: all .2s; }
+  transition: all 0.2s; }
   .btn:hover, .btn:active {
     outline: none; }
   .btn:hover {
@@ -265,6 +265,7 @@ body {
   width: max-content; }
 
 .content__sign-in {
+  min-height: calc(100vh - 4rem);
   grid-row: 1 / 4;
   display: flex;
   flex-direction: column;
@@ -275,11 +276,11 @@ body {
   background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/library.jpeg);
   background-size: cover;
   background-position: top;
-  clip-path: polygon(0 20%, 100% 0, 100% 30rem, 0 100%); }
+  clip-path: polygon(0 20%, 100% 0, 100% 60rem, 0 100%); }
 
 .logo__sign-in {
   padding-bottom: 3rem;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 3rem;
   color: white;
   grid-row: 1;
@@ -301,7 +302,8 @@ body {
   max-width: 22rem;
   min-width: 15rem;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  text-decoration: none; }
   @media only screen and (max-width: 43.75em) {
     .login {
       font-size: 1.1rem; } }
@@ -323,6 +325,7 @@ body {
 
 .content__book {
   grid-row: content-start / content-end;
+  min-height: calc(100vh - 27.5rem);
   display: grid;
   grid-template-columns: minmax(auto, 1fr) minmax(auto, 1fr);
   grid-template-rows: repeat(4, minmax(min-content, max-content));
@@ -446,7 +449,7 @@ body {
   color: #ccc; }
 
 .rate:not(:checked) > label:before {
-  content: ' \2605 ';
+  content: " \2605 ";
   padding-right: 2rem; }
 
 .rate > input:checked ~ label {
@@ -530,6 +533,7 @@ body {
     padding-right: 1rem; }
 
 .content__search {
+  min-height: calc(100vh - 27.5rem);
   grid-row: content-start / content-end;
   display: grid;
   grid-template-rows: max-content min-content max-content;
