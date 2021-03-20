@@ -6,18 +6,21 @@ import Home from "./containers/Home";
 import Search from "./containers/Search";
 import Detail from "./containers/Detail";
 import { SearchProvider } from "./contexts/Search";
+import { GeneralProvider } from "./contexts/General";
 
 function App() {
   return (
     <React.Fragment>
       <Router history={history}>
         <Switch>
-          <SearchProvider>
-            <Route path="/" exact component={SignIn} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/search" exact component={Search} />
-            <Route path="/detail" exact component={Detail} />
-          </SearchProvider>
+          <GeneralProvider>
+            <SearchProvider>
+              <Route path="/" exact component={SignIn} />
+              <Route path="/home" exact component={Home} />
+              <Route path="/search" exact component={Search} />
+              <Route path="/detail" exact component={Detail} />
+            </SearchProvider>
+          </GeneralProvider>
         </Switch>
       </Router>
     </React.Fragment>

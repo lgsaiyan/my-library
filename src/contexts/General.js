@@ -1,20 +1,22 @@
-// import React, { useReducer } from "react";
+import React, { useReducer } from "react";
 
-// export const SearchContext = React.createContext([]);
+export const GeneralContext = React.createContext([]);
 
-// const reducer = (searchData, setSearchData) => ({
-//   ...searchData,
-//   ...setSearchData,
-// });
+const reducer = (state, setState) => ({
+  ...state,
+  ...setState,
+});
 
-// const initialState = null;
+const initialState = {
+  bookID_for_detail: null,
+};
 
-// export function SearchProvider(props) {
-//   const [searchData, setSearchData] = useReducer(reducer, initialState);
+export function GeneralProvider(props) {
+  const [state, setState] = useReducer(reducer, initialState);
 
-//   return (
-//     <SearchContext.Provider value={{ searchData, setSearchData }}>
-//       {props.children}
-//     </SearchContext.Provider>
-//   );
-// }
+  return (
+    <GeneralContext.Provider value={{ state, setState }}>
+      {props.children}
+    </GeneralContext.Provider>
+  );
+}

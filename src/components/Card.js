@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import history from "../history";
+import { GeneralContext } from "../contexts/General";
 
 const Card = (props) => {
+  const { setState } = useContext(GeneralContext);
   const onClick = () => {
-    history.push("/detail");
+    if (props.id) {
+      setState({ bookID_for_detail: props.id });
+      history.push("/detail");
+    } else {
+      return null;
+    }
   };
 
   return (

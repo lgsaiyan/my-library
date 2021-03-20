@@ -13,7 +13,11 @@ const SearchList = () => {
 
       const getAuthor = () => {
         if (authors) {
-          return authors[0];
+          if (authors[0].length < 20) {
+            return authors[0];
+          } else {
+            return "Author name too long!";
+          }
         }
         return "Author N/A";
       };
@@ -29,8 +33,6 @@ const SearchList = () => {
           return noImage;
         }
       };
-      console.log(title.length);
-
       const getTitle = () => {
         if (title.length > 40) {
           const shortTitle = title.slice(0, 40);
