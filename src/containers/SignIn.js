@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleAuth from "../components/GoogleAuth";
 
 const SignIn = () => {
   return (
@@ -12,12 +13,7 @@ const SignIn = () => {
           myLibrary
         </h1>
 
-        <Link to="/" className="login btn">
-          Sign-in with Google
-          <svg className="google__svg">
-            <use xlinkHref="img/sprite.svg#icon-google"></use>
-          </svg>
-        </Link>
+        <GoogleAuth />
 
         <Link to="/home" className="login btn">
           Continue as guest
