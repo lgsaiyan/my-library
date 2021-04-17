@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
+import { GeneralContext } from "../contexts/General";
 
 const SignIn = () => {
+  const { setState } = useContext(GeneralContext);
+
+  const onClick = () => {
+    setState({ authStatus: "guest" });
+  };
+
   return (
     <React.Fragment>
       <div className="content__sign-in">
@@ -15,7 +22,7 @@ const SignIn = () => {
 
         <GoogleAuth />
 
-        <Link to="/home" className="login btn">
+        <Link to="/home" className="login btn" onClick={onClick}>
           Continue as guest
           <svg className="guest__svg">
             <use xlinkHref="/img/sprite.svg#icon-user"></use>

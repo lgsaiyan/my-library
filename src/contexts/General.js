@@ -9,6 +9,7 @@ const reducer = (state, setState) => ({
 
 const initialState = {
   bookID_for_detail: null,
+  authStatus: null,
 };
 
 export function GeneralProvider(props) {
