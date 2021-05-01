@@ -7,11 +7,16 @@ import history from "../history";
 const Header = () => {
   const { state } = useContext(GeneralContext);
 
+  const onAuthChange = () => {
+    console.log("onAuthChange activated");
+    history.push("/");
+  };
+
   const onClick = () => {
     if (state.authStatus === true) {
       const auth = window.gapi.auth2.getAuthInstance();
       auth.signOut();
-      //auth.isSignedIn.listen(onAuthChange);
+      auth.isSignedIn.listen(onAuthChange);
       console.log(
         "Auth State in HEADER right after sign out click: " + state.authStatus
       );
@@ -29,11 +34,12 @@ const Header = () => {
 
   // Runs after user is signed out in google auth
   useEffect(() => {
+    console.log("state at beginining of home: " + state.authStatus);
     if (state.authStatus === false) {
       console.log("I tried to exit");
       history.push("/");
     }
-  }, [state.authStatus]);
+  }, []);
 
   return (
     <React.Fragment>

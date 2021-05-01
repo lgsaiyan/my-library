@@ -1,13 +1,18 @@
 import React from "react";
 import Card from "./Card";
 import SearchList from "./SearchList";
+import UsersBooksList from "./UsersBooksList";
 import noImage from "../assets/no-img.png";
 
 const Library = () => {
+  // destructure user and search data props
+
+  //Pass data as a prop into renderedList
+
   return (
     <React.Fragment>
       <div class="library">
-        <SearchList />
+        <UsersBooksList />
         <Card
           title="Bingo"
           author="Fat ass"

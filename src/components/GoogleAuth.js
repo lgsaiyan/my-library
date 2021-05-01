@@ -10,6 +10,13 @@ const GoogleAuth = () => {
   const onAuthChange = () => {
     const auth = window.gapi.auth2.getAuthInstance();
     setState({ authStatus: auth.isSignedIn.get() });
+    console.log("onAuthChange activated");
+
+    if (auth.isSignedIn.get() === true) {
+      const token = auth.currentUser.fe.qc.access_token;
+      console.log(token);
+      setState({ accessToken: token });
+    }
   };
 
   // Check auth status initally
@@ -31,6 +38,7 @@ const GoogleAuth = () => {
   }, []);
 
   const onClick = () => {
+    console.log(state.authStatus);
     const auth = window.gapi.auth2.getAuthInstance();
     auth.signIn();
     //setState({ authStatus: auth.isSignedIn.get() });
