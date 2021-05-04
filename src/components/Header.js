@@ -7,19 +7,19 @@ import history from "../history";
 const Header = () => {
   const { state } = useContext(GeneralContext);
 
-  const onAuthChange = () => {
-    console.log("onAuthChange activated");
-    // console.log("GoogleAuth Unmounted");
-    // const auth = window.gapi.auth2.getAuthInstance();
-    // window.removeEventListener(onAuthChange(), auth.isSignedIn.listen());
-    history.push("/");
-  };
+  // const onAuthChange = () => {
+  //   console.log("onAuthChange activated");
+  //   // console.log("GoogleAuth Unmounted");
+  //   // const auth = window.gapi.auth2.getAuthInstance();
+  //   // window.removeEventListener(onAuthChange(), auth.isSignedIn.listen());
+  //   history.push("/");
+  // };
 
-  useEffect(() => {
-    const auth = window.gapi.auth2.getAuthInstance();
-    auth.isSignedIn.listen(onAuthChange);
-    console.log("Listender mounted in HEADER.");
-  }, []);
+  // useEffect(() => {
+  //   const auth = window.gapi.auth2.getAuthInstance();
+  //   auth.isSignedIn.listen(onAuthChange);
+  //   console.log("Listender mounted in HEADER.");
+  // }, []);
 
   const onClick = () => {
     if (state.authStatus === true) {
@@ -42,13 +42,13 @@ const Header = () => {
   // };
 
   // Runs after user is signed out in google auth
-  useEffect(() => {
-    console.log("state at beginining of home: " + state.authStatus);
-    if (state.authStatus === false) {
-      console.log("I tried to exit");
-      history.push("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log("state at beginining of home: " + state.authStatus);
+  //   if (state.authStatus === false) {
+  //     console.log("I tried to exit");
+  //     history.push("/");
+  //   }
+  // }, []);
 
   return (
     <React.Fragment>
