@@ -11,9 +11,9 @@ import { GeneralContext } from "../contexts/General";
 const Home = () => {
   const { state } = useContext(GeneralContext);
   const [books, setBooks] = useState(null);
-  console.log("Token at HOME: " + state.accessToken);
+  //console.log("Token at HOME: " + state.accessToken);
 
-  // const bookData = () => {
+  // const bookData = () => { DELETE THIS SHIT!
   //   if (history.location.pathname === "/home") {
   //     console.log("home");
   //     //set data to users books
@@ -34,14 +34,14 @@ const Home = () => {
         headers: {
           Authorization: `Bearer ${state.accessToken}`,
         },
-        // params: {
-        //   shelf: 0,
-        // },
+        params: {
+          shelf: 0,
+        },
       });
 
       //Convert google data into Array
       const results = Object.values(response.data.items);
-      console.log("These are the request results: " + results);
+      console.log("These are the request results: " + response + results);
 
       // Set data in State
       setBooks(results);

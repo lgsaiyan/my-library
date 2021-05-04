@@ -9,14 +9,23 @@ const Header = () => {
 
   const onAuthChange = () => {
     console.log("onAuthChange activated");
+    // console.log("GoogleAuth Unmounted");
+    // const auth = window.gapi.auth2.getAuthInstance();
+    // window.removeEventListener(onAuthChange(), auth.isSignedIn.listen());
     history.push("/");
   };
+
+  useEffect(() => {
+    const auth = window.gapi.auth2.getAuthInstance();
+    auth.isSignedIn.listen(onAuthChange);
+    console.log("Listender mounted in HEADER.");
+  }, []);
 
   const onClick = () => {
     if (state.authStatus === true) {
       const auth = window.gapi.auth2.getAuthInstance();
       auth.signOut();
-      auth.isSignedIn.listen(onAuthChange);
+      // auth.isSignedIn.listen(onAuthChange);
       console.log(
         "Auth State in HEADER right after sign out click: " + state.authStatus
       );

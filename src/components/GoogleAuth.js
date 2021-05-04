@@ -1,20 +1,23 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import history from "../history";
 import { GeneralContext } from "../contexts/General";
 
 const GoogleAuth = () => {
   const { state, setState } = useContext(GeneralContext);
+  //const [localAuthStatus, setLocalAuthStatus] = useState(state); //Used to prevent unmounted component trying to update thru General context state
 
   console.log("Sign in Page Auth State at Start " + state.authStatus);
 
   const onAuthChange = () => {
     const auth = window.gapi.auth2.getAuthInstance();
     setState({ authStatus: auth.isSignedIn.get() });
+    //setLocalAuthStatus(auth.isSignedIn.get());
     console.log("onAuthChange activated");
+    console.log("I ran twice");
 
     if (auth.isSignedIn.get() === true) {
       const token = auth.currentUser.fe.qc.access_token;
-      console.log(token);
+      //console.log(token);
       setState({ accessToken: token });
     }
   };
@@ -31,7 +34,7 @@ const GoogleAuth = () => {
         .then(() => {
           const auth = window.gapi.auth2.getAuthInstance();
           //setState({ authStatus: auth.isSignedIn.get() });
-          console.log(auth.isSignedIn.get());
+          console.log("Event listender mounted on Signin Page");
           auth.isSignedIn.listen(onAuthChange);
         });
     });
@@ -57,6 +60,12 @@ const GoogleAuth = () => {
   // Runs after state updates
   useEffect(() => {
     proceed();
+
+    return () => {
+      // console.log("GoogleAuth Unmounted");
+      // const auth = window.gapi.auth2.getAuthInstance();
+      // window.removeEventListener(onAuthChange(), auth.isSignedIn.listen());
+    };
   }, [state.authStatus]);
 
   return (
