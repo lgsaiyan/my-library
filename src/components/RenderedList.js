@@ -3,11 +3,13 @@ import Card from "./Card";
 import { SearchContext } from "../contexts/Search";
 import noImage from "../assets/no-img.png";
 
-const UsersBooksList = () => {
+const RenderedList = ({ data }) => {
   const { searchData } = useContext(SearchContext);
 
-  if (searchData) {
-    const renderedList = searchData.results.map((book) => {
+  // Data is either search results or users bookshelf
+
+  if (data) {
+    const list = data.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;
 
@@ -54,10 +56,10 @@ const UsersBooksList = () => {
       );
     });
 
-    return <React.Fragment>{renderedList}</React.Fragment>;
+    return <React.Fragment>{list}</React.Fragment>;
   } else {
     return null;
   }
 };
 
-export default UsersBooksList;
+export default RenderedList;
