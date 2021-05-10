@@ -7,10 +7,11 @@ import Footer from "../components/Footer";
 import history from "../history";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
+import LoadSpinner from "../LoadSpinner/LoadSpinner";
 
 const Home = () => {
-  const { state } = useContext(GeneralContext);
-  const [books, setBooks] = useState(null);
+  const { state, setState } = useContext(GeneralContext);
+  //const [books, setBooks] = useState(null);
 
   //console.log(history.location.pathname);
 
@@ -27,19 +28,19 @@ const Home = () => {
 
       //Convert google data into Array
       const results = Object.values(response.data.items);
-      //console.log("These are the request results: " + response + results);
       console.log(results);
-      //console.log(response.data.items[5]);
 
       // Set data in State -- Verify where to keep state data, local as prop passed down to Library component, or in Context.
-      setBooks(results);
+      setState({ userBooks: results });
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getUsersBooks();
+    if (state.authStatus === true) {
+      getUsersBooks();
+    }
   }, []);
 
   return (
@@ -47,7 +48,7 @@ const Home = () => {
       <Header />
       <div className="content">
         <Sort />
-        <Library userBooks={books} />
+        <Library userBooks={state.userBooks} />
         <Pagination />
       </div>
       <Footer />

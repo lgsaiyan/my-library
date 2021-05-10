@@ -1,14 +1,38 @@
 import React, { useContext } from "react";
 import Card from "./Card";
-import { SearchContext } from "../contexts/Search";
+import { GeneralContext } from "../contexts/General";
 import noImage from "../assets/no-img.png";
+import LoadSpinner from "../LoadSpinner/LoadSpinner";
+import history from "../history";
 
 const RenderedList = ({ data }) => {
-  const { searchData } = useContext(SearchContext);
+  const { state } = useContext(GeneralContext);
+  const location = history.location.pathname;
 
-  // Data is either search results or users bookshelf
-
-  if (data) {
+  // Data is either "loading", search results or users bookshelf
+  if (state.authStatus === "guest" && location !== "/search") {
+    return (
+      <Card
+        id={null}
+        title={"You must sign in to view your library!"}
+        author={"You can still search, though."}
+        rating={<div class="library__book__rating__star">&#9733;</div>}
+        img={noImage}
+        key={1000}
+      />
+    );
+  } else if (data === "empty") {
+    return (
+      <Card
+        id={null}
+        title={"You have no books :("}
+        author={"Do you even read?"}
+        rating={<div class="library__book__rating__star">&#9733;</div>}
+        img={noImage}
+        key={100}
+      />
+    );
+  } else if (data) {
     const list = data.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;
@@ -58,7 +82,7 @@ const RenderedList = ({ data }) => {
 
     return <React.Fragment>{list}</React.Fragment>;
   } else {
-    return null;
+    return <LoadSpinner />;
   }
 };
 

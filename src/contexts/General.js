@@ -11,6 +11,7 @@ const initialState = {
   bookID_for_detail: null,
   authStatus: null,
   accessToken: null,
+  userBooks: null,
 };
 
 export function GeneralProvider(props) {

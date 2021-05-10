@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../contexts/Search";
 
 const Clear = () => {
+  const { setSearchData } = useContext(SearchContext);
+  const onClick = () => {
+    setSearchData({ results: null });
+  };
+
   return (
     <React.Fragment>
       <div class="exit">
         <span class="exit__text">Search Results</span>
-        <Link to="/home">
+        <Link to="/home" onClick={onClick}>
           <svg class="exit__btn">
             <use xlinkHref="img/sprite.svg#icon-cancel-circle"></use>
           </svg>

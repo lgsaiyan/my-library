@@ -25,7 +25,7 @@ const SearchBar = () => {
       console.log(results);
 
       // Set data in Search Context
-      setSearchData({ results });
+      setSearchData({ results }); // UPDATE TO just (results) so don't have to do .results on searchdata!!*****
     } catch (err) {
       console.log(err);
     }

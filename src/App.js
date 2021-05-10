@@ -11,12 +11,7 @@ import { GeneralContext } from "./contexts/General";
 function App() {
   const { state, setState } = useContext(GeneralContext);
 
-  const fat = () => {
-    console.log(state);
-  };
-  fat();
-
-  //Update context state on GAPI auth status change
+  // Update context state on GAPI auth status change
   const onAuthChange = () => {
     const auth = window.gapi.auth2.getAuthInstance();
     setState({ authStatus: auth.isSignedIn.get() });
@@ -28,8 +23,8 @@ function App() {
     }
   };
 
-  //After context state updates, proceed based on auth status and location
-  useEffect(() => {
+  // Determine location based on auth status
+  const determineLocation = () => {
     const location = history.location.pathname;
     switch (state.authStatus) {
       case true:
@@ -59,9 +54,16 @@ function App() {
       default:
         break;
     }
+  };
+
+  determineLocation();
+
+  // After context state updates, proceed based on auth status and location check
+  useEffect(() => {
+    determineLocation();
   }, [state.authStatus]);
 
-  // Check auth status at start
+  // Check auth status at start and set landing page
   useEffect(() => {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
