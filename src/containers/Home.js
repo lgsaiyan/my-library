@@ -41,7 +41,7 @@ const Home = () => {
     if (state.authStatus === true) {
       getUsersBooks();
     }
-  }, []);
+  }, [state.accessToken]);
 
   return (
     <React.Fragment>

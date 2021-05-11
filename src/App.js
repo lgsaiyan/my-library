@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 import SignIn from "./containers/SignIn";
@@ -10,6 +10,7 @@ import { GeneralContext } from "./contexts/General";
 
 function App() {
   const { state, setState } = useContext(GeneralContext);
+  const [loaded, setLoaded] = useState(false);
 
   // Update context state on GAPI auth status change
   const onAuthChange = () => {
@@ -20,6 +21,7 @@ function App() {
     if (auth.isSignedIn.get() === true) {
       const token = auth.currentUser.fe.qc.access_token;
       setState({ accessToken: token });
+      console.log("I have the token");
     }
   };
 
@@ -52,6 +54,7 @@ function App() {
       case "guest":
         break;
       default:
+        console.log("Default break activated");
         break;
     }
   };
@@ -61,9 +64,12 @@ function App() {
   // After context state updates, proceed based on auth status and location check
   useEffect(() => {
     determineLocation();
-  }, [state.authStatus]);
+    if (loaded === true) {
+      onAuthChange();
+    }
+  }, [state.authStatus, loaded]);
 
-  // Check auth status at start and set landing page
+  // Check auth status at start
   useEffect(() => {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
@@ -76,6 +82,7 @@ function App() {
           const auth = window.gapi.auth2.getAuthInstance();
           console.log("Event listender mounted");
           auth.isSignedIn.listen(onAuthChange);
+          setLoaded(true);
         });
     });
   }, []);

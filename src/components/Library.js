@@ -10,6 +10,7 @@ import LoadSpinner from "../LoadSpinner/LoadSpinner";
 const Library = ({ userBooks }) => {
   // Init consts
   const [data, setData] = useState(null);
+  //const [loaded, setLoaded] = useState(false);
   const { searchData } = useContext(SearchContext);
 
   // Function to determine which data gets passed down to renderedList (based on path location)
@@ -18,7 +19,13 @@ const Library = ({ userBooks }) => {
     console.log("Ran determine data");
     if (location === "/search") {
       console.log(`Search Data in Library component: ${searchData}`);
-      if (searchData.results !== null) setData(searchData.results);
+      if (searchData !== null) {
+        if (searchData.results !== null) {
+          setData(searchData.results);
+        } else {
+          return null;
+        }
+      }
     } else if (location === "/home") {
       if (userBooks !== null) {
         setData(userBooks);

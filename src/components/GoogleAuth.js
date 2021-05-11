@@ -5,7 +5,6 @@ const GoogleAuth = () => {
   const { state } = useContext(GeneralContext);
 
   const onClick = () => {
-    console.log(state.authStatus);
     const auth = window.gapi.auth2.getAuthInstance();
     auth.signIn();
   };
