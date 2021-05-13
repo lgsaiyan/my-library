@@ -12,6 +12,7 @@ const initialState = {
   authStatus: null,
   accessToken: null,
   userBooks: null,
+  detailData: null,
 };
 
 export function GeneralProvider(props) {

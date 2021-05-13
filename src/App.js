@@ -11,23 +11,30 @@ import { GeneralContext } from "./contexts/General";
 function App() {
   const { state, setState } = useContext(GeneralContext);
   const [loaded, setLoaded] = useState(false);
+  const location = history.location.pathname;
 
   // Update context state on GAPI auth status change
   const onAuthChange = () => {
-    const auth = window.gapi.auth2.getAuthInstance();
-    setState({ authStatus: auth.isSignedIn.get() });
-    console.log("onAuthChange activated in APP");
+    if (location === "/home" && state.authStatus === "guest") {
+      console.log(
+        "won't reload and change authstatus as the guest on home page"
+      );
+    } else {
+      const auth = window.gapi.auth2.getAuthInstance();
+      setState({ authStatus: auth.isSignedIn.get() });
+      console.log("onAuthChange activated in APP");
 
-    if (auth.isSignedIn.get() === true) {
-      const token = auth.currentUser.fe.qc.access_token;
-      setState({ accessToken: token });
-      console.log("I have the token");
+      if (auth.isSignedIn.get() === true) {
+        const token = auth.currentUser.fe.qc.access_token;
+        setState({ accessToken: token });
+        console.log("I have the token");
+      }
     }
   };
 
   // Determine location based on auth status
   const determineLocation = () => {
-    const location = history.location.pathname;
+    console.log(state.authStatus);
     switch (state.authStatus) {
       case true:
         switch (location) {
@@ -41,6 +48,9 @@ function App() {
             break;
         }
         break;
+      case "guest":
+        //history.push("/home"); <-- this happens at Link component
+        break;
       case false:
         switch (location) {
           case "/":
@@ -51,8 +61,9 @@ function App() {
             break;
         }
         break;
-      case "guest":
-        break;
+      // case "guest":
+      //   //history.push("/home"); <-- this happens at Link component
+      //   break;
       default:
         console.log("Default break activated");
         break;

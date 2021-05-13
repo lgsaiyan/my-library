@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import Card from "./Card";
-import SearchList from "./SearchList";
 import RenderedList from "./RenderedList";
-import noImage from "../assets/no-img.png";
 import { SearchContext } from "../contexts/Search";
 import history from "../history";
-import LoadSpinner from "../LoadSpinner/LoadSpinner";
+import { GeneralContext } from "../contexts/General";
 
 const Library = ({ userBooks }) => {
   // Init consts
   const [data, setData] = useState(null);
-  //const [loaded, setLoaded] = useState(false);
   const { searchData } = useContext(SearchContext);
+  //const { state, setState } = useContext(GeneralContext);
 
   // Function to determine which data gets passed down to renderedList (based on path location)
   const determineData = () => {
@@ -22,6 +19,7 @@ const Library = ({ userBooks }) => {
       if (searchData !== null) {
         if (searchData.results !== null) {
           setData(searchData.results);
+          //setState({ detailData: searchData.results }); //Setting in Context
         } else {
           return null;
         }
@@ -29,11 +27,12 @@ const Library = ({ userBooks }) => {
     } else if (location === "/home") {
       if (userBooks !== null) {
         setData(userBooks);
-        console.log("i should be logged rn");
-        console.log(userBooks);
+        //setState({ detailData: userBooks }); //Setting in Context
+        console.log("userbooks is full of books");
       }
     } else {
       setData("empty");
+      //setState({ detailData: "empty" }); //Setting in Context
       console.log("I set data to empty");
     }
   };
@@ -46,8 +45,6 @@ const Library = ({ userBooks }) => {
     determineData();
   }, [userBooks, searchData]);
 
-  //Pass data as a prop into renderedList
-  //const data = userBooks;
   console.log(data);
 
   return (

@@ -5,7 +5,7 @@ import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
 const Header = () => {
-  const { state } = useContext(GeneralContext);
+  const { state, setState } = useContext(GeneralContext);
 
   // const onAuthChange = () => {
   //   console.log("onAuthChange activated");
@@ -25,6 +25,7 @@ const Header = () => {
     if (state.authStatus === true) {
       const auth = window.gapi.auth2.getAuthInstance();
       auth.signOut();
+      setState({ userBooks: null });
       // auth.isSignedIn.listen(onAuthChange);
       console.log(
         "Auth State in HEADER right after sign out click: " + state.authStatus
