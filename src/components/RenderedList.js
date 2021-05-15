@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Card from "./Card";
 import { GeneralContext } from "../contexts/General";
 import noImage from "../assets/no-img.png";
@@ -6,8 +6,12 @@ import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
 
 const RenderedList = ({ data }) => {
-  const { state } = useContext(GeneralContext);
+  const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
+
+  useEffect(() => {
+    setState({ detailData: data });
+  }, [data]);
 
   // Data is either "loading", search results or users bookshelf
   if (state.authStatus === "guest" && location !== "/search") {

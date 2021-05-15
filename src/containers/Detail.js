@@ -10,7 +10,6 @@ import noImage from "../assets/no-img.png";
 
 const Detail = () => {
   const { state } = useContext(GeneralContext);
-  const { searchData } = useContext(SearchContext);
   const [descriptionState, setDescriptionState] = useState("");
 
   // Reset scroll position
@@ -22,7 +21,7 @@ const Detail = () => {
 
   // Find book by ID in search data or userBooks data
   const bookID = state.bookID_for_detail;
-  const book = searchData.results.find((el) => el.id === bookID);
+  const book = state.detailData.find((el) => el.id === bookID);
 
   // Destructure book
   const { volumeInfo } = book;
