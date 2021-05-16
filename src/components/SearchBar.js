@@ -34,18 +34,15 @@ const SearchBar = () => {
   // ON SUBMIT
   const onSubmit = async () => {
     console.log("This is the query term in onSubmit: " + term);
-    // API request
+    //Reset search data
+    //setSearchData(null);
+
+    // Send API request
     query();
 
     //Route to search results page
     history.push("/search");
   };
-
-  // useEffect(() => {
-  //   //console.log(results);
-  //   console.log(searchData);
-  //   //setSearchData({ results });
-  // }, [searchData]);
 
   // ON KEY PRESS
   useEffect(() => {

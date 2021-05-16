@@ -4,7 +4,6 @@ import Sort from "../components/Sort";
 import Library from "../components/Library";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
-import history from "../history";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
 

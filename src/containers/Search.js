@@ -6,7 +6,6 @@ import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 
 const Search = () => {
-  //Get search data here, pass as prop into Library
   return (
     <React.Fragment>
       <Header />

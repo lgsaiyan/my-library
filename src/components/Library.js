@@ -2,24 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import RenderedList from "./RenderedList";
 import { SearchContext } from "../contexts/Search";
 import history from "../history";
-import { GeneralContext } from "../contexts/General";
 
 const Library = ({ userBooks }) => {
   // Init consts
   const [data, setData] = useState(null);
   const { searchData } = useContext(SearchContext);
-  //const { state, setState } = useContext(GeneralContext);
 
   // Function to determine which data gets passed down to renderedList (based on path location)
   const determineData = () => {
     const location = history.location.pathname;
-    console.log("Ran determine data");
+    //console.log("Ran determine data");
     if (location === "/search") {
-      console.log(`Search Data in Library component: ${searchData}`);
+      //console.log(`Search Data in Library component: ${searchData}`);
       if (searchData !== null) {
         if (searchData.results !== null) {
           setData(searchData.results);
-          //setState({ detailData: searchData.results }); //Setting in Context
         } else {
           return null;
         }
@@ -27,13 +24,11 @@ const Library = ({ userBooks }) => {
     } else if (location === "/home") {
       if (userBooks !== null) {
         setData(userBooks);
-        //setState({ detailData: userBooks }); //Setting in Context
-        console.log("userbooks is full of books");
+        //console.log("userbooks is full of books");
       }
     } else {
       setData("empty");
-      //setState({ detailData: "empty" }); //Setting in Context
-      console.log("I set data to empty");
+      //console.log("I set data to empty");
     }
   };
 
@@ -45,7 +40,7 @@ const Library = ({ userBooks }) => {
     determineData();
   }, [userBooks, searchData]);
 
-  console.log(data);
+  //console.log(data);
 
   return (
     <React.Fragment>

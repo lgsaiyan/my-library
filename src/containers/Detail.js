@@ -5,8 +5,8 @@ import Rating from "../components/Rating";
 import AddBtn from "../components/AddBtn";
 import Footer from "../components/Footer";
 import { GeneralContext } from "../contexts/General";
-import { SearchContext } from "../contexts/Search";
 import noImage from "../assets/no-img.png";
+import history from "../history";
 
 const Detail = () => {
   const { state } = useContext(GeneralContext);
@@ -22,6 +22,16 @@ const Detail = () => {
   // Find book by ID in search data or userBooks data
   const bookID = state.bookID_for_detail;
   const book = state.detailData.find((el) => el.id === bookID);
+
+  //ALT making sure if you refresh page it doesn't crash app
+  // let book;
+  // if (state.detailData) {
+  //   console.log("There is detailData");
+  //   book = state.detailData.find((el) => el.id === bookID);
+  // } else {
+  //   //history.goBack(); //set to previous page
+  //   history.push("/home");
+  // }
 
   // Destructure book
   const { volumeInfo } = book;

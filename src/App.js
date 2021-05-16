@@ -70,7 +70,7 @@ function App() {
     }
   };
 
-  determineLocation();
+  determineLocation(); // Should we put this in useEffect in .then at google gapi?
 
   // After context state updates, proceed based on auth status and location check
   useEffect(() => {
