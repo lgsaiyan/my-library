@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import Back from "../components/Back";
 import Rating from "../components/Rating";
-import AddBtn from "../components/AddBtn";
+import AddRemoveBtn from "../components/AddRemoveBtn";
 import Footer from "../components/Footer";
 import { GeneralContext } from "../contexts/General";
 import noImage from "../assets/no-img.png";
@@ -163,7 +163,7 @@ const Detail = () => {
           </div>
         </div>
         <Rating />
-        <AddBtn />
+        <AddRemoveBtn />
       </div>
       <Footer />
     </React.Fragment>
