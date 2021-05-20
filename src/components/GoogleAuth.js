@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 
 const GoogleAuth = () => {
-  const { state } = useContext(GeneralContext);
+  // const { state } = useContext(GeneralContext);
 
   const onClick = () => {
     const auth = window.gapi.auth2.getAuthInstance();

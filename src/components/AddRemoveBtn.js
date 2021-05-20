@@ -38,6 +38,9 @@ const AddRemoveBtn = () => {
   console.log(validate);
 
   const add = async () => {
+    if (state.authStatus === "guest") {
+      return alert("You must sign in to add books to your library!");
+    }
     //Send POST Request to Google to Add book
     const postBook = async () => {
       console.log("trying to add");
