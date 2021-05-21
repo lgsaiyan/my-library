@@ -45,9 +45,6 @@ const Detail = () => {
     imageLinks,
   } = volumeInfo;
 
-  console.log(description);
-  console.log(state.userBooks);
-
   // Clean up data / error handeling
 
   const getAuthor = () => {
@@ -99,8 +96,6 @@ const Detail = () => {
   };
 
   handleDescriptionState();
-  console.log("this is set desc : " + setDescription);
-  console.log(description);
 
   const getDescription = () => {
     if (setDescription === "closed") {

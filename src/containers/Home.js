@@ -9,7 +9,7 @@ import { GeneralContext } from "../contexts/General";
 
 const Home = () => {
   const { state, setState } = useContext(GeneralContext);
-
+  console.log("I rendered Home");
   //Get users book info in console
 
   const getUsersBooks = async () => {
@@ -23,10 +23,13 @@ const Home = () => {
 
       //Convert google data into Array
       const results = Object.values(response.data.items);
-      //console.log(results);
 
       // Set data in State -- Verify where to keep state data, local as prop passed down to Library component, or in Context.
-      setState({ userBooks: results });
+      if (state.userBooks === results) {
+        return null;
+      } else {
+        setState({ userBooks: results });
+      }
     } catch (err) {
       console.log(err);
     }

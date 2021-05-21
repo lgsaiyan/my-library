@@ -4,6 +4,7 @@ import { SearchContext } from "../contexts/Search";
 import history from "../history";
 
 const Library = ({ userBooks }) => {
+  console.log("I rendered Library");
   // Init consts
   const [data, setData] = useState(null);
   const { searchData } = useContext(SearchContext);
@@ -15,14 +16,14 @@ const Library = ({ userBooks }) => {
     if (location === "/search") {
       //console.log(`Search Data in Library component: ${searchData}`);
       if (searchData !== null) {
-        if (searchData.results !== null) {
+        if (searchData.results !== null && searchData.results !== data) {
           setData(searchData.results);
         } else {
           return null;
         }
       }
     } else if (location === "/home") {
-      if (userBooks !== null) {
+      if (userBooks !== null && userBooks !== data) {
         setData(userBooks);
         //console.log("userbooks is full of books");
       }
@@ -32,9 +33,9 @@ const Library = ({ userBooks }) => {
     }
   };
 
-  useEffect(() => {
-    determineData();
-  });
+  // useEffect(() => {
+  //   determineData();
+  // });
 
   useEffect(() => {
     determineData();

@@ -8,9 +8,16 @@ import history from "../history";
 const RenderedList = ({ data }) => {
   const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
+  console.log("I rendered RenderedList");
 
+  // Update Context State: Data for Detail Page // Can we do this in Library Comp???
   useEffect(() => {
-    setState({ detailData: data });
+    console.log("I ran useEffect in RenderedList");
+    if (state.detailData === data) {
+      return null;
+    } else {
+      setState({ detailData: data });
+    }
   }, [data]);
 
   // Data is either "loading", search results or users bookshelf
@@ -64,11 +71,14 @@ const RenderedList = ({ data }) => {
         }
       };
       const getTitle = () => {
-        if (title.length > 40) {
-          const shortTitle = title.slice(0, 40);
-          const newTitle = shortTitle.concat("...");
-          return newTitle;
+        if (title) {
+          if (title.length > 40) {
+            const shortTitle = title.slice(0, 40);
+            const newTitle = shortTitle.concat("...");
+            return newTitle;
+          }
         }
+
         return title;
       };
 
