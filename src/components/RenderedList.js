@@ -8,17 +8,34 @@ import history from "../history";
 const RenderedList = ({ data }) => {
   const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
-  console.log("I rendered RenderedList");
+  //console.log("I rendered RenderedList");
 
-  // Update Context State: Data for Detail Page // Can we do this in Library Comp???
-  useEffect(() => {
-    console.log("I ran useEffect in RenderedList");
-    if (state.detailData === data) {
-      return null;
-    } else {
-      setState({ detailData: data });
-    }
-  }, [data]);
+  // //Update Context State if necessary (doing it here to save on re-renderings)
+  // const updateDetailData = () => {
+  //   if (state.detailData === data) {
+  //     return null;
+  //   } else {
+  //     setState({ detailData: data });
+  //   }
+  // }
+
+  // const updateUserBooks = () => {
+  //   if (state.detailData === data) {
+  //     return null;
+  //   } else {
+  //     setState({ detailData: data });
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   console.log("I ran useEffect in RenderedList");
+  //   if (state.detailData === data) {
+  //     return null;
+  //   } else {
+  //     setState({ detailData: data });
+  //   }
+
+  // }, [data, theUserBooks]);
 
   // Data is either "loading", search results or users bookshelf
   if (state.authStatus === "guest" && location !== "/search") {

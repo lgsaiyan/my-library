@@ -18,7 +18,7 @@ const Detail = () => {
   };
 
   scrollReset();
-
+  // console.log(state.detailData);
   // Find book by ID in search data or userBooks data
   const bookID = state.bookID_for_detail;
   const book = state.detailData.find((el) => el.id === bookID);

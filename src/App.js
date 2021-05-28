@@ -14,7 +14,7 @@ function App() {
   const location = history.location.pathname;
 
   // Update context state on GAPI auth status change
-  const onAuthChange = async () => {
+  const onAuthChange = () => {
     if (location === "/home" && state.authStatus === "guest") {
       console.log(
         "won't reload and change authstatus as the guest on home page"

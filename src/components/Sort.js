@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import Dropdown from "./Dropdown";
 
 const Sort = () => {
+  //Check Auth Status to set options data
+  const options = [
+    {
+      label: "Relevance",
+      value: "Data",
+    },
+    {
+      label: "Date Published",
+      value: "Ordered Data",
+    },
+    {
+      label: "Rating",
+      value: "Rating Data",
+    },
+  ];
+
+  const [selected, setSelected] = useState(options[0]);
+
+  //Do something here when selected state changes
+
   return (
     <React.Fragment>
       <div className="sort">
-        <div className="sort__menu btn">Sort by: date added</div>
+        <Dropdown
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
         <svg className="sort__btn circle-btn">
           <use xlinkHref="img/sprite.svg#icon-circle-up"></use>
         </svg>

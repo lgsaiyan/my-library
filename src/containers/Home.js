@@ -6,12 +6,14 @@ import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
+import Spinner from "../LoadSpinner/LoadSpinner";
 
 const Home = () => {
   const { state, setState } = useContext(GeneralContext);
+  const [theUsersBooks, setTheUsersBooks] = useState(null);
   console.log("I rendered Home");
   //Get users book info in console
-
+  //let theUsersBooks;
   const getUsersBooks = async () => {
     //Make API request
     try {
@@ -25,11 +27,14 @@ const Home = () => {
       const results = Object.values(response.data.items);
 
       // Set data in State -- Verify where to keep state data, local as prop passed down to Library component, or in Context.
-      if (state.userBooks === results) {
-        return null;
-      } else {
-        setState({ userBooks: results });
-      }
+      // if (state.userBooks === results) {
+      //   return null;
+      // } else {
+      //   setState({ userBooks: results });
+      // }
+      //theUsersBooks = results;
+      setTheUsersBooks(results);
+      console.log("Got the usersbook from HOME");
     } catch (err) {
       console.log(err);
     }
@@ -38,15 +43,20 @@ const Home = () => {
   useEffect(() => {
     if (state.authStatus === true) {
       getUsersBooks();
+      console.log("UseEffect triggered in HOME");
     }
   }, [state.accessToken]);
+
+  // if (!state.authStatus) {
+  //   return <Spinner />;
+  // }
 
   return (
     <React.Fragment>
       <Header />
       <div className="content">
         <Sort />
-        <Library userBooks={state.userBooks} />
+        <Library theUsersBooks={theUsersBooks} />
         <Pagination />
       </div>
       <Footer />
