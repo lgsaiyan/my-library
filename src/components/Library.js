@@ -4,6 +4,12 @@ import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
+/**
+ * Remders the users library of books.
+ * @param {*} theUsersBooks
+ * @returns react library component.
+ */
+
 const Library = ({ theUsersBooks }) => {
   console.log("I rendered Library");
   // Init consts
@@ -13,23 +19,37 @@ const Library = ({ theUsersBooks }) => {
   let fauxData = null;
 
   //Functions to update Context State if necessary
-  const updateDetailData = () => {
+  const getDetailData = () => {
     if (state.detailData === fauxData) {
-      console.log("I returned null");
       return null;
     } else {
-      setState({ detailData: fauxData });
-      console.log("I am setting detail data state");
+      return fauxData;
     }
   };
 
-  const updateUserBooks = () => {
+  const getUserBooks = () => {
     if (state.userBooks === theUsersBooks) {
       return null;
     } else {
-      setState({ userBooks: theUsersBooks });
-      console.log("I am setting userBooks state");
+      return theUsersBooks;
     }
+  };
+
+  const updateState = () => {
+    const userBookData = getUserBooks();
+    const bookDetailsData = getDetailData();
+    const stateUpdate = {};
+
+    if (userBookData !== null) {
+      stateUpdate.userBooks = userBookData;
+    }
+
+    if (bookDetailsData !== null) {
+      stateUpdate.detailData = bookDetailsData;
+    }
+
+    console.log("I am setting detail data state");
+    setState(stateUpdate);
   };
 
   // Function to determine which data gets passed down to renderedList (based on path location)
@@ -66,11 +86,9 @@ const Library = ({ theUsersBooks }) => {
   const determineAndUpdateData = async () => {
     if (theUsersBooks !== null) {
       await determineData();
+      console.log(fauxData);
       console.log("determineDataFinished");
-      //console.log(data);
-      //console.log(theUsersBooks);
-      updateDetailData();
-      updateUserBooks();
+      updateState();
     }
   };
 
@@ -78,31 +96,10 @@ const Library = ({ theUsersBooks }) => {
     determineAndUpdateData();
   }, [theUsersBooks, searchData]);
 
-  //console.log(data);
-
   return (
     <React.Fragment>
       <div class="library">
         <RenderedList data={data} />
-        {/* <Card
-          title="No Books to Show"
-          author="Nobody"
-          rating="0 stars"
-          img="/img/world.jpg"
-        /> */}
-
-        {/* <div class="library__book">
-          <div class="library__book__img-container">
-            <img src={noImage} alt="book-cover" />
-          </div>
-          <div class="library__book__title">Title</div>
-          <div class="library__book__author">Author</div>
-          <div class="library__book__rating">
-            <div class="library__book__rating__star">&#9733;</div>
-            <div class="library__book__rating__star">&#9733;</div>
-            <div class="library__book__rating__star">&#9733;</div>
-          </div>
-        </div> */}
       </div>
     </React.Fragment>
   );
