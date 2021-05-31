@@ -22,7 +22,6 @@
   text-decoration: none;
   display: block;
   background-color: white;
-  transition: all 0.2s;
 }
 
 .dropdown-content > .item:hover {

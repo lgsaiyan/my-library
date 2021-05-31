@@ -16,6 +16,10 @@ const Sort = () => {
       label: "Rating",
       value: "Rating Data",
     },
+    {
+      label: "Length",
+      value: "Pages",
+    },
   ];
 
   const [selected, setSelected] = useState(options[0]);

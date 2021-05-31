@@ -1,5 +1,6 @@
 import "./dropdown.css";
 import React, { useState, useEffect, useRef } from "react";
+import history from "../history";
 
 const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
@@ -7,8 +8,10 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
 
   useEffect(() => {
     const onBodyClick = (event) => {
-      if (ref.current.contains(event.target)) {
-        return;
+      if (ref.current) {
+        if (ref.current.contains(event.target)) {
+          return;
+        }
       }
 
       setOpen(false);
