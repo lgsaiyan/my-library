@@ -8,34 +8,6 @@ import history from "../history";
 const RenderedList = ({ data }) => {
   const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
-  //console.log("I rendered RenderedList");
-
-  // //Update Context State if necessary (doing it here to save on re-renderings)
-  // const updateDetailData = () => {
-  //   if (state.detailData === data) {
-  //     return null;
-  //   } else {
-  //     setState({ detailData: data });
-  //   }
-  // }
-
-  // const updateUserBooks = () => {
-  //   if (state.detailData === data) {
-  //     return null;
-  //   } else {
-  //     setState({ detailData: data });
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   console.log("I ran useEffect in RenderedList");
-  //   if (state.detailData === data) {
-  //     return null;
-  //   } else {
-  //     setState({ detailData: data });
-  //   }
-
-  // }, [data, theUserBooks]);
 
   // Data is either "loading", search results or users bookshelf
   if (state.authStatus === "guest" && location !== "/search") {
@@ -99,12 +71,38 @@ const RenderedList = ({ data }) => {
         return title;
       };
 
+      const getRating = () => {
+        const item = {
+          id: "Wnna9CLtblAC",
+          rating: 4,
+        };
+        const storedRatings = [];
+        storedRatings.push(item);
+
+        const isItInStoredRatings = storedRatings.find(
+          (el) => el.id === book.id
+        );
+        console.log(isItInStoredRatings);
+        if (isItInStoredRatings) {
+          const rating = isItInStoredRatings.rating;
+          //let i;
+          //let stars;
+          // for (i = 0; i < rating; i++) {
+          //   stars
+          // }
+
+          return <div>{rating}</div>;
+        }
+
+        return <div>Not Rated</div>;
+      };
+
       return (
         <Card
           id={book.id}
           title={getTitle()}
           author={getAuthor()}
-          rating="3 stars"
+          rating={getRating()}
           img={getImage()}
           key={book.id}
         />
