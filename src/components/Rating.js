@@ -1,41 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GeneralContext } from "../contexts/General";
 
 const Rating = () => {
   const { state } = useContext(GeneralContext);
+  const [bookRating, setBookRating] = useState(null);
 
-  //Set Rating
-  const onClick = (e) => {
-    const { value } = e.target;
+  let ratings = [];
+  const previousRatings = localStorage.getItem("ratings");
+  if (previousRatings) {
+    const parsedPreviousRatings = JSON.parse(previousRatings);
+    ratings = [...parsedPreviousRatings];
+  }
 
-    const book = {
-      id: state.bookID_for_detail,
-      rating: value,
-    };
-    let ratings = [];
-    const previousRatings = localStorage.getItem("ratings");
-    if (previousRatings) {
-      const parsedPreviousRatings = JSON.parse(previousRatings);
-      console.log(parsedPreviousRatings);
-      ratings = [...parsedPreviousRatings];
-    }
-
-    const isItRated = ratings.find((el) => el.id === book.id);
-    console.log(isItRated);
-    if (isItRated !== undefined) {
-      const i = ratings.findIndex((el) => el.id === book.id);
-      ratings.splice(i, 1, book);
-      console.log("spliced");
-    } else {
-      ratings.push(book);
-      console.log("pushed");
-    }
-
-    localStorage.setItem("ratings", JSON.stringify(ratings));
-    console.log(ratings);
+  const book = {
+    id: state.bookID_for_detail,
   };
 
-  // Init Rating
+  const index = ratings.findIndex((el) => el.id === book.id);
+
+  //Init Rating
+  if (index !== -1) {
+    if (bookRating !== ratings[index].rating)
+      setBookRating(ratings[index].rating);
+  }
+
+  //Set Rating on Click
+  const onChange = (e) => {
+    const { value } = e.target;
+
+    book.rating = value;
+
+    if (index !== -1) {
+      ratings.splice(index, 1, book);
+    } else {
+      ratings.push(book);
+    }
+    //Using Local Storage because Google Books API removed feature I was planning to use for rating system
+    localStorage.setItem("ratings", JSON.stringify(ratings));
+    setBookRating(book.rating);
+  };
 
   return (
     <React.Fragment>
@@ -47,7 +50,8 @@ const Rating = () => {
             id="star5"
             name="rate"
             value="5"
-            onClick={onClick}
+            onChange={onChange}
+            checked={bookRating === "5"}
           />
           <label for="star5" title="text">
             5 stars
@@ -57,7 +61,8 @@ const Rating = () => {
             id="star4"
             name="rate"
             value="4"
-            onClick={onClick}
+            onChange={onChange}
+            checked={bookRating === "4"}
           />
           <label for="star4" title="text">
             4 stars
@@ -67,7 +72,8 @@ const Rating = () => {
             id="star3"
             name="rate"
             value="3"
-            onClick={onClick}
+            onChange={onChange}
+            checked={bookRating === "3"}
           />
           <label for="star3" title="text">
             3 stars
@@ -77,7 +83,8 @@ const Rating = () => {
             id="star2"
             name="rate"
             value="2"
-            onClick={onClick}
+            onChange={onChange}
+            checked={bookRating === "2"}
           />
           <label for="star2" title="text">
             2 stars
@@ -87,7 +94,8 @@ const Rating = () => {
             id="star1"
             name="rate"
             value="1"
-            onClick={onClick}
+            onChange={onChange}
+            checked={bookRating === "1"}
           />
           <label for="star1" title="text">
             1 star

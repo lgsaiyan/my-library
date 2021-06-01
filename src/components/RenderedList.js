@@ -72,26 +72,26 @@ const RenderedList = ({ data }) => {
       };
 
       const getRating = () => {
-        const item = {
-          id: "Wnna9CLtblAC",
-          rating: 4,
-        };
-        const storedRatings = [];
-        storedRatings.push(item);
+        const unparsedStoredRatings = localStorage.getItem("ratings");
+        let storedRatings = JSON.parse(unparsedStoredRatings);
+        if (!storedRatings) {
+          storedRatings = [];
+        }
+        //storedRatings.push(item);
 
         const isItInStoredRatings = storedRatings.find(
           (el) => el.id === book.id
         );
-        console.log(isItInStoredRatings);
         if (isItInStoredRatings) {
           const rating = isItInStoredRatings.rating;
-          //let i;
-          //let stars;
-          // for (i = 0; i < rating; i++) {
-          //   stars
-          // }
 
-          return <div>{rating}</div>;
+          let stars = [];
+          let i;
+          for (i = 0; i < rating; i++) {
+            stars.push(<div class="library__book__rating__star">&#9733;</div>);
+          }
+
+          return <React.Fragment>{stars}</React.Fragment>;
         }
 
         return <div>Not Rated</div>;
