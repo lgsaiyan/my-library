@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
 import { GeneralContext } from "../contexts/General";
 import noImage from "../assets/no-img.png";

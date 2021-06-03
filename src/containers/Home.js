@@ -13,7 +13,6 @@ const Home = () => {
   console.log("I rendered Home");
 
   const getUsersBooks = async () => {
-    //Make API request
     try {
       const response = await google.get("/mylibrary/bookshelves/0/volumes", {
         headers: {
@@ -21,7 +20,6 @@ const Home = () => {
         },
       });
 
-      //Convert google data into Array
       const results = Object.values(response.data.items);
 
       setTheUsersBooks(results);
