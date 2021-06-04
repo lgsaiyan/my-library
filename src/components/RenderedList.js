@@ -1,13 +1,26 @@
 import React, { useContext } from "react";
 import Card from "./Card";
 import { GeneralContext } from "../contexts/General";
+import { SearchContext } from "../contexts/Search";
 import noImage from "../assets/no-img.png";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
 
 const RenderedList = ({ data }) => {
-  const { state, setState } = useContext(GeneralContext);
+  const { state } = useContext(GeneralContext);
+  const { searchData } = useContext(SearchContext);
   const location = history.location.pathname;
+
+  let searchResults = null;
+  const getSearchResultsChecker = () => {
+    if (searchData) {
+      if (searchData.results !== null) {
+        searchResults = searchData.results;
+        return searchResults;
+      }
+    }
+  };
+  getSearchResultsChecker();
 
   // Data is either "loading", search results or users bookshelf
   if (state.authStatus === "guest" && location !== "/search") {
@@ -32,7 +45,14 @@ const RenderedList = ({ data }) => {
         key={100}
       />
     );
+  } else if (location === "/search" && data !== searchResults) {
+    console.log("Search results Load Spinner Engaged");
+    return <LoadSpinner />;
+  } else if (location === "/home" && data !== state.userBooks) {
+    console.log("Search results Load Spinner Engaged");
+    return <LoadSpinner />;
   } else if (data) {
+    //console.log(data);
     const list = data.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;
@@ -77,7 +97,6 @@ const RenderedList = ({ data }) => {
         if (!storedRatings) {
           storedRatings = [];
         }
-        //storedRatings.push(item);
 
         const isItInStoredRatings = storedRatings.find(
           (el) => el.id === book.id

@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
-import Back from "../components/Back";
-import Rating from "../components/Rating";
-import AddRemoveBtn from "../components/AddRemoveBtn";
 import Footer from "../components/Footer";
-import { GeneralContext } from "../contexts/General";
-import noImage from "../assets/no-img.png";
 import Content from "../components/Content";
 
 const Detail = () => {

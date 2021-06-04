@@ -8,7 +8,7 @@ import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
 
 const Home = () => {
-  const { state, setState } = useContext(GeneralContext);
+  const { state } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
   console.log("I rendered Home");
 
@@ -23,7 +23,8 @@ const Home = () => {
       const results = Object.values(response.data.items);
 
       setTheUsersBooks(results);
-      console.log("Got the usersbook from HOME");
+      console.log("Got the usersbook from HOME :");
+      console.log(results);
     } catch (err) {
       console.log(err);
     }

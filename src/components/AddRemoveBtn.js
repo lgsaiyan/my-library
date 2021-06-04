@@ -4,6 +4,7 @@ import google from "../api/googleBooks";
 
 const AddRemoveBtn = () => {
   const { state, setState } = useContext(GeneralContext);
+  console.log(state.userBooks);
 
   const getUsersBooks = async () => {
     //Make API request
@@ -36,6 +37,7 @@ const AddRemoveBtn = () => {
     validate = undefined;
   }
   console.log(validate);
+  console.log(state.userBooks);
 
   const add = async () => {
     if (state.authStatus === "guest") {

@@ -13,17 +13,17 @@ const App = () => {
   // Update context state on GAPI auth status change
   const onAuthChange = () => {
     if (location === "/home" && state.authStatus === "guest") {
-      console.log(
-        "won't reload and change authstatus as the guest on home page"
-      );
+      // console.log(
+      //   "won't reload and change authstatus as the guest on home page"
+      // );
     } else {
       const auth = window.gapi.auth2.getAuthInstance();
-      console.log("onAuthChange activated in APP");
+      //console.log("onAuthChange activated in APP");
 
       let token = null;
       if (auth.isSignedIn.get() === true) {
         token = auth.currentUser.he.qc.access_token;
-        console.log("I have the token");
+        // console.log("I have the token");
       }
 
       setState({ authStatus: auth.isSignedIn.get(), accessToken: token });
@@ -32,7 +32,7 @@ const App = () => {
 
   // Determine location based on auth status
   const determineLocation = (authStatus) => {
-    console.log("Determining Location: " + authStatus);
+    //console.log("Determining Location: " + authStatus);
     let newLocation = determineLocationPath(authStatus, location);
     if (newLocation !== location) {
       history.push(newLocation);
@@ -42,7 +42,7 @@ const App = () => {
   // After context state updates, proceed based on auth status and location chec
   const init = async () => {
     const auth = await initGoogleAuth();
-    console.log("Event listender mounted");
+    //console.log("Event listender mounted");
     auth.isSignedIn.listen(onAuthChange);
     onAuthChange();
   };

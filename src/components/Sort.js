@@ -22,12 +22,23 @@ const Sort = () => {
 
   const [selected, setSelected] = useState(options[0]);
 
+  console.log(state.userBooks);
+
+  const sortRelevance = () => {
+    console.log(state.currentData);
+    console.log(state.userBooks);
+    if (state.currentData !== state.userBooks) {
+      console.log("Set relvance state");
+      setState({ currentData: state.userBooks });
+    }
+  };
+
   const sortDatePublished = () => {
     console.log(state.currentData);
     if (state.currentData !== undefined && state.currentData !== null) {
-      console.log("Sorting date published...");
+      //console.log("Sorting date published...");
       let newData = state.currentData;
-      console.log(newData);
+      //console.log(newData);
       const sortedData = newData.sort((a, b) => {
         console.log("I'm inside the vagina");
         //console.log(a.volumeInfo.publishedDate);
@@ -36,16 +47,18 @@ const Sort = () => {
           new Date(b.volumeInfo.publishedDate)
         );
       });
-      console.log(sortedData);
-      // setState(state.) ????
+      //console.log(sortedData);
+      setState({ currentData: sortedData });
     }
   };
 
   const orderDataPublished = () => {};
 
   useEffect(() => {
+    if (selected.label === "Relevance") sortRelevance();
+
     console.log("Use Effect in Sort Comp Activated");
-    if (selected.key === 2) sortDatePublished();
+    if (selected.label === "Date Published") sortDatePublished();
   }, [selected]);
 
   //Do something here when selected state changes
