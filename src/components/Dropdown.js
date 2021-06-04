@@ -2,7 +2,7 @@ import "./dropdown.css";
 import React, { useState, useEffect, useRef } from "react";
 import history from "../history";
 
-const Dropdown = ({ label, options, selected, onSelectedChange }) => {
+const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -25,13 +25,13 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   }, []);
 
   const renderedOptions = options.map((option) => {
-    if (option.value === selected.value) {
+    if (option.label === selected.label) {
       return null;
     }
 
     return (
       <div
-        key={option.value}
+        key={option.key}
         className="item"
         onClick={() => onSelectedChange(option)}
       >

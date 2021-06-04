@@ -15,7 +15,6 @@ const Content = () => {
   };
   scrollReset();
 
-  //console.log(state.detailData);
   // Find book by ID in search data or userBooks data
   const bookID = state.bookID_for_detail;
 
@@ -37,7 +36,7 @@ const Content = () => {
     );
   }
 
-  const book = state.detailData.find((el) => el.id === bookID);
+  const book = state.currentData.find((el) => el.id === bookID);
 
   // Destructure book
   const { volumeInfo } = book;

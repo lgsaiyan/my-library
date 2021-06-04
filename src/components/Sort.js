@@ -5,35 +5,39 @@ import { GeneralContext } from "../contexts/General";
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
 
-  //Do we need an object in the array, or can we just use the labels themselves in an array?
   const options = [
     {
       label: "Relevance",
-      value: state.data,
+      key: 1,
     },
     {
       label: "Date Published",
-      value: "Ordered Data",
+      key: 2,
     },
     {
       label: "Rating",
-      value: "Rating Data",
+      key: 3,
     },
   ];
 
   const [selected, setSelected] = useState(options[0]);
 
   const sortDatePublished = () => {
-    console.log(state.data);
-    if (state.data !== undefined /*&& state.data !== null*/) {
+    console.log(state.currentData);
+    if (state.currentData !== undefined && state.currentData !== null) {
       console.log("Sorting date published...");
-      console.log(state.data);
-      let newData = state.data;
+      let newData = state.currentData;
       console.log(newData);
-      newData.sort((a, b) => {
-        return a.volumeInfo.publishedDate - b.volumeInfo.publishedDate;
+      const sortedData = newData.sort((a, b) => {
+        console.log("I'm inside the vagina");
+        //console.log(a.volumeInfo.publishedDate);
+        return (
+          new Date(a.volumeInfo.publishedDate) -
+          new Date(b.volumeInfo.publishedDate)
+        );
       });
-      console.log(newData);
+      console.log(sortedData);
+      // setState(state.) ????
     }
   };
 
@@ -41,7 +45,7 @@ const Sort = () => {
 
   useEffect(() => {
     console.log("Use Effect in Sort Comp Activated");
-    sortDatePublished();
+    if (selected.key === 2) sortDatePublished();
   }, [selected]);
 
   //Do something here when selected state changes

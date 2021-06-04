@@ -19,8 +19,8 @@ const Library = ({ theUsersBooks }) => {
   let fauxData = null;
 
   //Functions to update Context State if necessary
-  const getDetailData = () => {
-    if (state.detailData === fauxData) {
+  const getCurrentData = () => {
+    if (state.currentData === fauxData) {
       return null;
     } else {
       return fauxData;
@@ -37,15 +37,15 @@ const Library = ({ theUsersBooks }) => {
 
   const updateState = () => {
     const userBookData = getUserBooks();
-    const bookDetailsData = getDetailData();
+    const booksCurrentData = getCurrentData();
     const stateUpdate = {};
 
     if (userBookData !== null) {
       stateUpdate.userBooks = userBookData;
     }
 
-    if (bookDetailsData !== null) {
-      stateUpdate.detailData = bookDetailsData;
+    if (booksCurrentData !== null) {
+      stateUpdate.currentData = booksCurrentData;
     }
 
     console.log("I am setting detail data state");
