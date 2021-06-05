@@ -4,10 +4,11 @@ import { GeneralContext } from "../contexts/General";
 
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
+  const [orderState, setOrderState] = useState("down");
 
   const options = [
     {
-      label: "Relevance",
+      label: "Date Added",
       key: 1,
     },
     {
@@ -15,53 +16,67 @@ const Sort = () => {
       key: 2,
     },
     {
-      label: "Rating",
+      label: "Length",
       key: 3,
     },
   ];
 
   const [selected, setSelected] = useState(options[0]);
 
-  console.log(state.userBooks);
-
-  const sortRelevance = () => {
-    console.log(state.currentData);
-    console.log(state.userBooks);
-    if (state.currentData !== state.userBooks) {
-      console.log("Set relvance state");
-      setState({ currentData: state.userBooks });
+  const sortDateAdded = () => {
+    if (state.userBooks !== undefined && state.userBooks !== null) {
+      let newData = state.userBooks;
+      const sortedData = newData.sort((a, b) => {
+        return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
+      });
+      setState({ currentData: sortedData });
     }
   };
 
   const sortDatePublished = () => {
-    console.log(state.currentData);
     if (state.currentData !== undefined && state.currentData !== null) {
-      //console.log("Sorting date published...");
       let newData = state.currentData;
-      //console.log(newData);
       const sortedData = newData.sort((a, b) => {
-        console.log("I'm inside the vagina");
-        //console.log(a.volumeInfo.publishedDate);
         return (
           new Date(a.volumeInfo.publishedDate) -
           new Date(b.volumeInfo.publishedDate)
         );
       });
-      //console.log(sortedData);
       setState({ currentData: sortedData });
     }
   };
 
-  const orderDataPublished = () => {};
+  const sortLength = () => {
+    if (state.currentData !== undefined && state.currentData !== null) {
+      let newData = state.currentData;
+      const sortedData = newData.sort((a, b) => {
+        return (
+          new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount)
+        );
+      });
+      setState({ currentData: sortedData });
+    }
+  };
+
+  const reOrder = () => {
+    let newData = state.currentData;
+    const reOrderedData = newData.reverse();
+    setState({ currentData: reOrderedData });
+
+    if (orderState === "down") {
+      setOrderState("up");
+    } else {
+      setOrderState("down");
+    }
+  };
 
   useEffect(() => {
-    if (selected.label === "Relevance") sortRelevance();
-
-    console.log("Use Effect in Sort Comp Activated");
-    if (selected.label === "Date Published") sortDatePublished();
+    if (state.userBooks.length > 1) {
+      if (selected.label === "Date Added") sortDateAdded();
+      if (selected.label === "Date Published") sortDatePublished();
+      if (selected.label === "Length") sortLength();
+    }
   }, [selected]);
-
-  //Do something here when selected state changes
 
   return (
     <React.Fragment>
@@ -71,12 +86,12 @@ const Sort = () => {
           selected={selected}
           onSelectedChange={setSelected}
         />
-        <svg className="sort__btn circle-btn">
-          <use xlinkHref="img/sprite.svg#icon-circle-up"></use>
+        <svg className="sort__btn circle-btn" onClick={reOrder}>
+          <use xlinkHref={`img/sprite.svg#icon-circle-${orderState}`}></use>
         </svg>
-        <svg className="sort__btn circle-btn">
+        {/* <svg className="sort__btn circle-btn" onClick={reOrder}>
           <use xlinkHref="img/sprite.svg#icon-circle-down"></use>
-        </svg>
+        </svg> */}
       </div>
     </React.Fragment>
   );

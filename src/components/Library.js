@@ -25,6 +25,7 @@ const Library = ({ theUsersBooks }) => {
         return null;
       } else {
         setState({ currentData: fauxData });
+        console.log("I set the current Data as sorted fauxData");
       }
     };
 
@@ -41,42 +42,6 @@ const Library = ({ theUsersBooks }) => {
     updateUserBooks();
     updateCurrentData();
   };
-
-  // const getCurrentData = () => {
-  //   if (state.currentData === fauxData) {
-  //     return null;
-  //   } else {
-  //     return fauxData;
-  //   }
-  // };
-
-  // const getUserBooks = () => {
-  //   if (state.userBooks === theUsersBooks) {
-  //     return null;
-  //   } else {
-  //     return theUsersBooks;
-  //   }
-  // };
-
-  // const updateState = () => {
-  //   const userBookData = getUserBooks();
-  //   const currentBooksData = getCurrentData();
-  //   const stateUpdate = {};
-
-  //   if (userBookData !== null) {
-  //     stateUpdate.userBooks = userBookData;
-  //   }
-
-  //   if (currentBooksData !== null) {
-  //     stateUpdate.currentData = currentBooksData;
-  //   }
-
-  //   console.log("I am setting detail data state");
-  //   setState({
-  //     currentData: stateUpdate.currentData,
-  //     userBooks: stateUpdate.userBooks,
-  //   });
-  // };
 
   // Function to determine which data gets passed down to renderedList (based on path location)
   const determineData = async () => {
