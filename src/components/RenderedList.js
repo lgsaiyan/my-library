@@ -6,10 +6,13 @@ import noImage from "../assets/no-img.png";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
 
-const RenderedList = ({ data }) => {
+const RenderedList = () => {
   const { state } = useContext(GeneralContext);
   const { searchData } = useContext(SearchContext);
   const location = history.location.pathname;
+  const data = state.masterData;
+  const renderData =
+    state.paginationData === null ? state.masterData : state.paginationData;
 
   let searchResults = null;
   const getSearchResultsChecker = () => {
@@ -42,18 +45,18 @@ const RenderedList = ({ data }) => {
         author={"Do you even read?"}
         rating={<div class="library__book__rating__star">&#9733;</div>}
         img={noImage}
-        key={100}
+        key={2000}
       />
     );
   } else if (location === "/search" && data !== searchResults) {
     console.log("Search results Load Spinner Engaged");
     return <LoadSpinner />;
   } else if (location === "/home" && data !== state.userBooks) {
-    console.log("Search results Load Spinner Engaged");
+    console.log("Home results Load Spinner Engaged");
     return <LoadSpinner />;
   } else if (data) {
     //console.log(data);
-    const list = data.map((book) => {
+    const list = renderData.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;
 

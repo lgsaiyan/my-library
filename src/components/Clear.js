@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { SearchContext } from "../contexts/Search";
+import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
 const Clear = () => {
   const { setSearchData } = useContext(SearchContext);
+  const { setState } = useContext(GeneralContext);
+
   const onClick = () => {
     setSearchData({ results: null });
+    setState({ page: 1 });
     history.push("/home");
   };
 

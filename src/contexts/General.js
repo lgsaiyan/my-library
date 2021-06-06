@@ -12,7 +12,11 @@ const initialState = {
   authStatus: null,
   accessToken: null,
   userBooks: null,
-  currentData: null,
+  masterData: null,
+  paginationData: null,
+  page: 1,
+  totalPages: null,
+  booksPerPage: 5,
 };
 
 export function GeneralProvider(props) {

@@ -5,6 +5,7 @@ import { GeneralContext } from "../contexts/General";
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
   const [orderState, setOrderState] = useState("down");
+  console.log("I sorted");
 
   const options = [
     {
@@ -29,52 +30,58 @@ const Sort = () => {
       const sortedData = newData.sort((a, b) => {
         return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
       });
-      setState({ currentData: sortedData });
+      setState({ masterData: sortedData });
     }
   };
 
   const sortDatePublished = () => {
-    if (state.currentData !== undefined && state.currentData !== null) {
-      let newData = state.currentData;
+    if (state.masterData !== undefined && state.masterData !== null) {
+      let newData = state.masterData;
       const sortedData = newData.sort((a, b) => {
         return (
           new Date(a.volumeInfo.publishedDate) -
           new Date(b.volumeInfo.publishedDate)
         );
       });
-      setState({ currentData: sortedData });
+      setState({ masterData: sortedData });
     }
   };
 
   const sortLength = () => {
-    if (state.currentData !== undefined && state.currentData !== null) {
-      let newData = state.currentData;
+    if (state.masterData !== undefined && state.masterData !== null) {
+      let newData = state.masterData;
       const sortedData = newData.sort((a, b) => {
         return (
           new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount)
         );
       });
-      setState({ currentData: sortedData });
+      setState({ masterData: sortedData });
     }
   };
 
   const reOrder = () => {
-    let newData = state.currentData;
-    const reOrderedData = newData.reverse();
-    setState({ currentData: reOrderedData });
+    if (state.masterData !== null && state.masterData.length > 1) {
+      let newData = state.masterData;
+      const reOrderedData = newData.reverse();
+      setState({ masterData: reOrderedData });
 
-    if (orderState === "down") {
-      setOrderState("up");
-    } else {
-      setOrderState("down");
+      if (orderState === "down") {
+        setOrderState("up");
+      } else {
+        setOrderState("down");
+      }
     }
   };
 
   useEffect(() => {
-    if (state.userBooks.length > 1) {
-      if (selected.label === "Date Added") sortDateAdded();
-      if (selected.label === "Date Published") sortDatePublished();
-      if (selected.label === "Length") sortLength();
+    if (state.userBooks !== null) {
+      if (state.userBooks.length > 1) {
+        if (selected.label === "Date Added") sortDateAdded();
+        if (selected.label === "Date Published") sortDatePublished();
+        if (selected.label === "Length") sortLength();
+        setState({ page: null });
+        console.log("Sort activated");
+      }
     }
   }, [selected]);
 

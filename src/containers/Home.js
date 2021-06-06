@@ -43,7 +43,7 @@ const Home = () => {
       <div className="content">
         <Sort />
         <Library theUsersBooks={theUsersBooks} />
-        <Pagination />
+        <Pagination booksPerPage={5} />
       </div>
       <Footer />
     </React.Fragment>

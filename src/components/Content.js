@@ -38,7 +38,7 @@ const Content = () => {
     );
   }
 
-  const book = state.currentData.find((el) => el.id === bookID);
+  const book = state.masterData.find((el) => el.id === bookID);
 
   // Destructure book
   const { volumeInfo } = book;

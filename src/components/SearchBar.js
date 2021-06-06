@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import google from "../api/googleBooks";
 import { SearchContext } from "../contexts/Search";
+import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
 const SearchBar = () => {
   const [term, setTerm] = useState("");
   const { setSearchData } = useContext(SearchContext);
+  const { setState } = useContext(GeneralContext);
 
   const onInputChange = (event) => {
     setTerm(event.target.value);
@@ -25,7 +27,8 @@ const SearchBar = () => {
       console.log(results);
 
       // Set data in Search Context
-      setSearchData({ results }); // UPDATE TO just (results) so don't have to do .results on searchdata!!*****
+      setSearchData({ results });
+      setState({ page: 1 });
     } catch (err) {
       console.log(err);
     }

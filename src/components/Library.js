@@ -3,6 +3,7 @@ import RenderedList from "./RenderedList";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
+import { computePagination } from "./Pagination";
 
 /**
  * Renders the users library of books OR the search results.
@@ -20,12 +21,33 @@ const Library = ({ theUsersBooks }) => {
   let fauxData = null;
 
   const updateState = () => {
-    const updateCurrentData = () => {
-      if (state.currentData === fauxData) {
+    const updatePagination = () => {
+      const fauxPaginationInfo = computePagination(
+        fauxData,
+        state.booksPerPage,
+        state.page
+      );
+
+      const paginationData = fauxPaginationInfo.paginationData;
+      const totalPages = fauxPaginationInfo.totalPages;
+      // if (state.masterData === fauxData) {
+      //   return null;
+      // } else {
+      setState({
+        paginationData: paginationData,
+        totalPages: totalPages,
+      });
+      if (state.page === null) {
+        setState({ page: 1 });
+      }
+      // }
+    };
+
+    const updateMasterData = () => {
+      if (state.masterData === fauxData) {
         return null;
       } else {
-        setState({ currentData: fauxData });
-        console.log("I set the current Data as sorted fauxData");
+        setState({ masterData: fauxData });
       }
     };
 
@@ -40,7 +62,10 @@ const Library = ({ theUsersBooks }) => {
       }
     };
     updateUserBooks();
-    updateCurrentData();
+    updateMasterData();
+    if (fauxData !== "empty" && fauxData !== null) {
+      updatePagination();
+    }
   };
 
   // Function to determine which data gets passed down to renderedList (based on path location)
@@ -87,12 +112,12 @@ const Library = ({ theUsersBooks }) => {
 
   useEffect(() => {
     determineAndUpdateData();
-  }, [theUsersBooks, searchData]);
+  }, [theUsersBooks, searchData, state.page]);
 
   return (
     <React.Fragment>
       <div class="library">
-        <RenderedList data={state.currentData} />
+        <RenderedList />
       </div>
     </React.Fragment>
   );
