@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import RenderedList from "./RenderedList";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
@@ -102,12 +102,8 @@ const Library = ({ theUsersBooks }) => {
   };
 
   const determineAndUpdateData = async () => {
-    //if (theUsersBooks !== null) {
     await determineData();
-    //console.log(fauxData);
-    //console.log("determineDataFinished");
     updateState();
-    // }
   };
 
   useEffect(() => {

@@ -63,7 +63,7 @@ const Sort = () => {
     if (state.masterData !== null && state.masterData.length > 1) {
       let newData = state.masterData;
       const reOrderedData = newData.reverse();
-      setState({ masterData: reOrderedData });
+      setState({ masterData: reOrderedData, page: null });
 
       if (orderState === "down") {
         setOrderState("up");

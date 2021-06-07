@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 
 export const computePagination = (data, booksPerPage, page) => {
@@ -24,6 +24,10 @@ const Pagination = () => {
   const { state, setState } = useContext(GeneralContext);
   console.log("I rendered Pagination");
 
+  const scrollReset = () => {
+    window.scrollTo(0, 0);
+  };
+
   let page = state.page;
   let totalPages = state.totalPages;
 
@@ -32,12 +36,14 @@ const Pagination = () => {
 
     //setPage(page - 1);
     setState({ page: page - 1 });
+    scrollReset();
   };
 
   const handleNext = () => {
     if (page === totalPages) return;
     //setPage(page + 1);
     setState({ page: page + 1 });
+    scrollReset();
   };
 
   return (

@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { GeneralContext } from "../contexts/General";
+import React from "react";
 
 const GoogleAuth = () => {
-  // const { state } = useContext(GeneralContext);
-
   const onClick = () => {
     const auth = window.gapi.auth2.getAuthInstance();
     auth.signIn();

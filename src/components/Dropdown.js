@@ -1,6 +1,5 @@
 import "./dropdown.css";
 import React, { useState, useEffect, useRef } from "react";
-import history from "../history";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
