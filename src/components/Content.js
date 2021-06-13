@@ -9,13 +9,11 @@ const Content = () => {
   const { state } = useContext(GeneralContext);
   const [descriptionState, setDescriptionState] = useState(null);
 
-  // Reset scroll position
   const scrollReset = () => {
     window.scrollTo(0, 0);
   };
   scrollReset();
 
-  // Find book by ID in search data or userBooks data
   const bookID = state.bookID_for_detail;
 
   if (!bookID) {
@@ -38,7 +36,6 @@ const Content = () => {
 
   const book = state.masterData.find((el) => el.id === bookID);
 
-  // Destructure book
   const { volumeInfo } = book;
   const {
     title,
@@ -49,8 +46,6 @@ const Content = () => {
     publishedDate,
     imageLinks,
   } = volumeInfo;
-
-  // Clean up data / error handeling
 
   const getAuthor = () => {
     if (authors) {
@@ -75,14 +70,12 @@ const Content = () => {
     }
   };
 
-  // Handle description length
   const shortenDescription = () => {
     const shortDescriptionRaw = description.slice(0, 200);
     const shortDescription = shortDescriptionRaw.concat("...");
     return shortDescription;
   };
 
-  // Handle description state
   let setDescription = null;
   const handleDescriptionState = () => {
     if (descriptionState !== null) {
@@ -132,7 +125,6 @@ const Content = () => {
         </React.Fragment>
       );
     } else {
-      console.log("else");
       return <React.Fragment>{description}</React.Fragment>;
     }
   };

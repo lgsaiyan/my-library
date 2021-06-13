@@ -14,7 +14,6 @@ const SearchBar = () => {
   };
 
   const query = async () => {
-    //Make API request with query term
     try {
       const response = await google.get("/volumes?", {
         params: {
@@ -22,11 +21,7 @@ const SearchBar = () => {
         },
       });
 
-      //Convert google data into Array
       const results = Object.values(response.data.items);
-      console.log(results);
-
-      // Set data in Search Context
       setSearchData({ results });
       setState({ page: 1 });
     } catch (err) {
@@ -34,24 +29,14 @@ const SearchBar = () => {
     }
   };
 
-  // ON SUBMIT
   const onSubmit = async () => {
-    console.log("This is the query term in onSubmit: " + term);
-    //Reset search data
-    //setSearchData(null);
-
-    // Send API request
     query();
-
-    //Route to search results page
     history.push("/search");
   };
 
-  // ON KEY PRESS
   useEffect(() => {
     const listener = (event) => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Upon enter" + term);
         onSubmit();
       }
     };

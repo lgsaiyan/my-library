@@ -25,7 +25,7 @@ const RenderedList = () => {
   };
   getSearchResultsChecker();
 
-  // Data is either "loading", search results or users bookshelf
+  // Data is either "loading", the search results or users bookshelf
   if (state.authStatus === "guest" && location !== "/search") {
     return (
       <Card
@@ -49,13 +49,10 @@ const RenderedList = () => {
       />
     );
   } else if (location === "/search" && data !== searchResults) {
-    console.log("Search results Load Spinner Engaged");
     return <LoadSpinner />;
   } else if (location === "/home" && data !== state.userBooks) {
-    console.log("Home results Load Spinner Engaged");
     return <LoadSpinner />;
   } else if (data) {
-    //console.log(data);
     const list = renderData.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;

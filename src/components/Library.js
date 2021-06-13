@@ -23,7 +23,7 @@ const Library = ({ theUsersBooks }) => {
   const location = history.location.pathname;
   let fauxData = null;
 
-  console.log("I rendered Library" + state.page);
+  console.log("I rendered Library, page: " + state.page);
 
   const determineDataType = async () => {
     try {
@@ -48,46 +48,47 @@ const Library = ({ theUsersBooks }) => {
   };
 
   const sortData = async () => {
-    try {
-      console.log("I tried to Sort in Library");
-      if (fauxData !== null && fauxData !== "empty") {
-        //Maybe we don't need this since same as getUserBooks order???
-        if (state.sortState === "Date Added") {
-          fauxData = sortFunctionDateAdded(fauxData);
+    if (location === "/home") {
+      try {
+        if (
+          fauxData !== undefined &&
+          fauxData !== null &&
+          fauxData !== "empty"
+        ) {
+          //Maybe we don't need this since same as getUserBooks order???
+          if (state.sortState === "Date Added") {
+            fauxData = sortFunctionDateAdded(fauxData);
+          }
+          if (state.sortState === "Date Published") {
+            fauxData = sortFunctionDatePublished(fauxData);
+          }
+          if (state.sortState === "Length") {
+            fauxData = sortFunctionLength(fauxData);
+          }
         }
-        if (state.sortState === "Date Published") {
-          fauxData = sortFunctionDatePublished(fauxData);
-        }
-        if (state.sortState === "Length") {
-          fauxData = sortFunctionLength(fauxData);
-        }
-      }
-    } catch (err) {}
+      } catch (err) {}
 
-    //if(state.previousLocation === "detail") return
-    // if(state.orderState === "down"){
-    //   return
-    // } else fauxData = reOrder(fauxData);
-    // fauxData = reOrder(fauxData);
-    console.log("I reOrdered Data");
+      if (state.orderState === "down") {
+        fauxData = reOrder(fauxData);
+      }
+    }
   };
 
   const updateState = () => {
     const updatePagination = () => {
-      const fauxPaginationInfo = computePagination(
-        fauxData,
-        state.booksPerPage,
-        state.page
-      );
+      if (fauxData !== undefined && fauxData !== null && fauxData !== "empty") {
+        const fauxPaginationInfo = computePagination(
+          fauxData,
+          state.booksPerPage,
+          state.page
+        );
 
-      const paginationData = fauxPaginationInfo.paginationData;
-      const totalPages = fauxPaginationInfo.totalPages;
+        const paginationData = fauxPaginationInfo.paginationData;
+        const totalPages = fauxPaginationInfo.totalPages;
 
-      if (state.previousLocation !== "detail") {
         setState({
           paginationData: paginationData,
           totalPages: totalPages,
-          //previousLocation: null,
         });
         if (state.page === null) {
           setState({ page: 1 });
@@ -113,9 +114,7 @@ const Library = ({ theUsersBooks }) => {
 
     updateUserBooks();
     updateMasterData();
-    if (fauxData !== "empty" && fauxData !== null) {
-      updatePagination();
-    }
+    updatePagination();
   };
 
   const determineAndUpdateData = async () => {
@@ -124,20 +123,9 @@ const Library = ({ theUsersBooks }) => {
     updateState();
   };
 
-  useEffect(
-    () => {
-      if (
-        state.previousLocation === "detail" //&&
-        //state.userBooksShouldUpdate === false
-      ) {
-        return;
-      } else {
-        determineAndUpdateData();
-      }
-    },
-    [theUsersBooks, searchData, state.page],
-    state.orderState
-  );
+  useEffect(() => {
+    determineAndUpdateData();
+  }, [theUsersBooks, searchData, state.page]);
 
   return (
     <React.Fragment>

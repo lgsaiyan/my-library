@@ -3,15 +3,10 @@ import history from "../history";
 import { GeneralContext } from "../contexts/General";
 
 const Back = () => {
-  const { state, setState } = useContext(GeneralContext);
+  const { setState } = useContext(GeneralContext);
 
-  //Need to determine this state for the Sort component, so it doesn't modify the state.page state to null when you go back to "home".
   const setPreviousLocationState = () => {
-    // if (state.page == 1) {
-    //   setState({ previousLocation: null });
-    // } else {
     setState({ previousLocation: "detail" });
-    // }
   };
 
   const onClick = () => {

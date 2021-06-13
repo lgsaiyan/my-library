@@ -4,7 +4,6 @@ import { GeneralContext } from "../contexts/General";
 
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
-  //const [orderState, setOrderState] = useState(state.sortOrderState);
 
   const options = [
     {
@@ -22,38 +21,7 @@ const Sort = () => {
   ];
 
   const index = options.findIndex((el) => el.label === state.sortState);
-  console.log(index);
-
   const [selected, setSelected] = useState(options[index]);
-
-  const sortDateAdded = () => {
-    const sortedData = sortFunctionDateAdded(state.masterData);
-    setState({ masterData: sortedData });
-  };
-
-  const sortDatePublished = () => {
-    const sortedData = sortFunctionDatePublished(state.masterData);
-    setState({ masterData: sortedData });
-  };
-
-  const sortLength = () => {
-    const sortedData = sortFunctionLength(state.masterData);
-    setState({ masterData: sortedData });
-  };
-
-  const determineSorting = () => {
-    if (
-      state.masterData !== undefined &&
-      state.masterData !== null &&
-      state.masterData !== "empty"
-    ) {
-      if (selected.label === "Date Added") sortDateAdded();
-      if (selected.label === "Date Published") sortDatePublished();
-      if (selected.label === "Length") sortLength();
-
-      console.log("Sorting activated");
-    }
-  };
 
   const reOrder = () => {
     if (state.orderState === "down") {
@@ -64,14 +32,9 @@ const Sort = () => {
   };
 
   useEffect(() => {
-    // console.log(state.masterData !== null);
-    // console.log(state.masterData !== "empty");
-    console.log(state.previousLocation);
-
     if (state.previousLocation === "detail") {
       setState({ previousLocation: null });
     } else {
-      determineSorting();
       setState({
         page: null,
         sortState: selected.label,

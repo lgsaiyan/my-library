@@ -18,13 +18,11 @@ const Rating = () => {
 
   const index = ratings.findIndex((el) => el.id === book.id);
 
-  //Init Rating
   if (index !== -1) {
     if (bookRating !== ratings[index].rating)
       setBookRating(ratings[index].rating);
   }
 
-  //Set Rating on Click
   const onChange = (e) => {
     const { value } = e.target;
 
@@ -35,6 +33,7 @@ const Rating = () => {
     } else {
       ratings.push(book);
     }
+
     //Using Local Storage because Google Books API removed feature I was planning to use for rating system
     localStorage.setItem("ratings", JSON.stringify(ratings));
     setBookRating(book.rating);
