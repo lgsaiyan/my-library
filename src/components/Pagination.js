@@ -12,9 +12,9 @@ export const computePagination = (data, booksPerPage, page) => {
 
   totalBooks = data.length;
   let totalPages = Math.ceil(totalBooks / booksPerPage);
-  console.log(totalPages);
+  //console.log(totalPages);
   const paginationData = paginate(data, booksPerPage, page);
-  console.log(paginationData);
+  //console.log(paginationData);
 
   const result = { paginationData, totalPages };
   return result;
@@ -22,7 +22,7 @@ export const computePagination = (data, booksPerPage, page) => {
 
 const Pagination = () => {
   const { state, setState } = useContext(GeneralContext);
-  console.log("I rendered Pagination");
+  //console.log("I rendered Pagination");
 
   const scrollReset = () => {
     window.scrollTo(0, 0);
@@ -64,7 +64,7 @@ const Pagination = () => {
           className="pages__right circle-btn"
           onClick={handleNext}
           style={
-            page === totalPages
+            page === totalPages || totalPages < 2
               ? { visibility: `hidden` }
               : { display: `block` }
           }

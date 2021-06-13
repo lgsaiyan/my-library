@@ -1,3 +1,4 @@
+import { normalizeUnits } from "moment";
 import React, { useReducer } from "react";
 
 export const GeneralContext = React.createContext([]);
@@ -17,6 +18,10 @@ const initialState = {
   page: 1,
   totalPages: null,
   booksPerPage: 5,
+  previousLocation: null,
+  sortState: "Date Added",
+  sortOrderState: "up",
+  userBooksShouldUpdate: false,
 };
 
 export function GeneralProvider(props) {

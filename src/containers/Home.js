@@ -8,7 +8,7 @@ import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
 
 const Home = () => {
-  const { state } = useContext(GeneralContext);
+  const { setState, state } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
   console.log("I rendered Home");
 
@@ -23,15 +23,16 @@ const Home = () => {
       const results = Object.values(response.data.items);
 
       setTheUsersBooks(results);
-      console.log("Got the usersbook from HOME :");
-      console.log(results);
+      console.log("Got the usersbook from HOME!");
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    if (state.authStatus === true) {
+    /*if (state.previousLocation === "detail")
+      setState({ previousLocation: null });
+    else*/ if (state.authStatus === true) {
       getUsersBooks();
       console.log("UseEffect triggered in HOME");
     }

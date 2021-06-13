@@ -4,7 +4,6 @@ import google from "../api/googleBooks";
 
 const AddRemoveBtn = () => {
   const { state, setState } = useContext(GeneralContext);
-  console.log(state.userBooks);
 
   const getUsersBooks = async () => {
     //Make API request
@@ -29,15 +28,15 @@ const AddRemoveBtn = () => {
   let validate;
   if (state.userBooks) {
     validate = state.userBooks.find((el) => el.id === state.bookID_for_detail);
-    console.log(`there is a userbooks, and it is: ${validate}`);
+    //console.log(`there is a userbooks, and it is: ${validate}`);
     if (validate !== undefined) {
     }
   } else {
-    console.log("There is no userBooks data");
+    //console.log("There is no userBooks data");
     validate = undefined;
   }
-  console.log(validate);
-  console.log(state.userBooks);
+  //console.log(validate);
+  // console.log(state.userBooks);
 
   const add = async () => {
     if (state.authStatus === "guest") {
@@ -45,7 +44,7 @@ const AddRemoveBtn = () => {
     }
     //Send POST Request to Google to Add book
     const postBook = async () => {
-      console.log("trying to add");
+      //console.log("trying to add");
       //Make API request
       try {
         const response = await google.post(
@@ -62,7 +61,7 @@ const AddRemoveBtn = () => {
         if (response.status === 200) {
           await getUsersBooks();
 
-          console.log(response);
+          // console.log(response);
         }
       } catch (err) {
         console.log(err);
@@ -70,11 +69,12 @@ const AddRemoveBtn = () => {
     };
 
     await postBook();
+    //setState({ userBooksShouldUpdate: true });
   };
 
   const remove = async () => {
     //Send POST Request to Google to Add book
-    console.log("trying to remove book");
+    //console.log("trying to remove book");
     const removeBook = async () => {
       //Make API request
       try {
@@ -98,13 +98,14 @@ const AddRemoveBtn = () => {
     };
 
     await removeBook();
+    //setState({ userBooksShouldUpdate: true });
   };
 
   const button = () => {
-    console.log("button called");
+    //console.log("button called");
     if (validate === undefined) {
       // Show "add" button
-      console.log("I am undefined");
+      //console.log("I am undefined");
       return (
         <div class="add" onClick={add}>
           <div class="add__text">Add to library</div>
@@ -114,7 +115,7 @@ const AddRemoveBtn = () => {
         </div>
       );
     } else if (validate !== undefined) {
-      console.log("I am NOT undefined");
+      //console.log("I am NOT undefined");
       //Show "remove" button
       return (
         <div class="remove" onClick={remove}>

@@ -4,8 +4,7 @@ import { GeneralContext } from "../contexts/General";
 
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
-  const [orderState, setOrderState] = useState("down");
-  console.log("I sorted");
+  const [orderState, setOrderState] = useState(state.sortOrderState);
 
   const options = [
     {
@@ -22,12 +21,15 @@ const Sort = () => {
     },
   ];
 
-  const [selected, setSelected] = useState(options[0]);
+  const index = options.findIndex((el) => el.label === state.sortState);
+  console.log(index);
+
+  const [selected, setSelected] = useState(options[index]);
 
   const sortDateAdded = () => {
     if (state.userBooks !== undefined && state.userBooks !== null) {
       let newData = state.userBooks;
-      const sortedData = newData.sort((a, b) => {
+      const sortedData = newData.sort((b, a) => {
         return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
       });
       setState({ masterData: sortedData });
@@ -37,7 +39,7 @@ const Sort = () => {
   const sortDatePublished = () => {
     if (state.masterData !== undefined && state.masterData !== null) {
       let newData = state.masterData;
-      const sortedData = newData.sort((a, b) => {
+      const sortedData = newData.sort((b, a) => {
         return (
           new Date(a.volumeInfo.publishedDate) -
           new Date(b.volumeInfo.publishedDate)
@@ -50,7 +52,7 @@ const Sort = () => {
   const sortLength = () => {
     if (state.masterData !== undefined && state.masterData !== null) {
       let newData = state.masterData;
-      const sortedData = newData.sort((a, b) => {
+      const sortedData = newData.sort((b, a) => {
         return (
           new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount)
         );
@@ -67,23 +69,47 @@ const Sort = () => {
 
       if (orderState === "down") {
         setOrderState("up");
+        //setState({ sortOrderState: "up" });
       } else {
         setOrderState("down");
+        //setState({ sortOrderState: "down" });
       }
     }
   };
 
-  useEffect(() => {
-    if (state.userBooks !== null) {
-      if (state.userBooks.length > 1) {
-        if (selected.label === "Date Added") sortDateAdded();
-        if (selected.label === "Date Published") sortDatePublished();
-        if (selected.label === "Length") sortLength();
-        setState({ page: null });
-        console.log("Sort activated");
-      }
+  const determineSorting = () => {
+    if (state.masterData !== null && state.masterData !== "empty") {
+      if (
+        selected.label === "Date Added" /*&& state.sortState !== "Date Added"*/
+      )
+        sortDateAdded();
+      if (
+        selected.label === "Date Published" /*&&
+        state.sortState !== "Date Published"*/
+      )
+        sortDatePublished();
+      if (selected.label === "Length" /*&& state.sortState !== "Length"*/)
+        sortLength();
+
+      console.log("Sorting activated");
     }
-  }, [selected]);
+  };
+
+  useEffect(() => {
+    // console.log(state.masterData !== null);
+    // console.log(state.masterData !== "empty");
+    console.log(state.previousLocation);
+
+    if (state.previousLocation === "detail") {
+      setState({ previousLocation: null });
+    } else {
+      determineSorting();
+      setState({
+        page: null,
+        sortState: selected.label,
+      });
+    }
+  }, [selected, state.masterData]);
 
   return (
     <React.Fragment>
@@ -96,9 +122,6 @@ const Sort = () => {
         <svg className="sort__btn circle-btn" onClick={reOrder}>
           <use xlinkHref={`img/sprite.svg#icon-circle-${orderState}`}></use>
         </svg>
-        {/* <svg className="sort__btn circle-btn" onClick={reOrder}>
-          <use xlinkHref="img/sprite.svg#icon-circle-down"></use>
-        </svg> */}
       </div>
     </React.Fragment>
   );

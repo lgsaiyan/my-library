@@ -9,8 +9,6 @@ const Content = () => {
   const { state } = useContext(GeneralContext);
   const [descriptionState, setDescriptionState] = useState(null);
 
-  console.log(state.userBooks);
-
   // Reset scroll position
   const scrollReset = () => {
     window.scrollTo(0, 0);
