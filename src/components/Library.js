@@ -4,6 +4,11 @@ import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
 import { computePagination } from "./Pagination";
+import {
+  sortFunctionDateAdded,
+  sortFunctionDatePublished,
+  sortFunctionLength,
+} from "./Sort";
 
 /**
  * Renders the users library of books OR the search results.
@@ -18,6 +23,45 @@ const Library = ({ theUsersBooks }) => {
   let fauxData = null;
 
   console.log("I rendered Library" + state.page);
+
+  const determineDataType = async () => {
+    try {
+      if (location === "/search") {
+        if (searchData !== null) {
+          if (searchData.results !== null) {
+            fauxData = searchData.results;
+          } else {
+            return null;
+          }
+        }
+      } else if (location === "/home") {
+        if (theUsersBooks !== null) {
+          fauxData = theUsersBooks;
+        }
+      } else {
+        fauxData = "empty";
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const sortData = async () => {
+    try {
+      if (fauxData !== null && fauxData !== "empty") {
+        //Maybe we don't need this since same as getUserBooks order???
+        if (state.sortState === "Date Added") {
+          fauxData = sortFunctionDateAdded(fauxData);
+        }
+        if (state.sortState === "Date Published") {
+          fauxData = sortFunctionDatePublished(fauxData);
+        }
+        if (state.sortState === "Length") {
+          fauxData = sortFunctionLength(fauxData);
+        }
+      }
+    } catch (err) {}
+  };
 
   const updateState = () => {
     const updatePagination = () => {
@@ -65,30 +109,9 @@ const Library = ({ theUsersBooks }) => {
     }
   };
 
-  const determineData = async () => {
-    try {
-      if (location === "/search") {
-        if (searchData !== null) {
-          if (searchData.results !== null) {
-            fauxData = searchData.results;
-          } else {
-            return null;
-          }
-        }
-      } else if (location === "/home") {
-        if (theUsersBooks !== null) {
-          fauxData = theUsersBooks;
-        }
-      } else {
-        fauxData = "empty";
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const determineAndUpdateData = async () => {
-    await determineData();
+    await determineDataType();
+    await sortData();
     updateState();
   };
 

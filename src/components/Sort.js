@@ -27,53 +27,23 @@ const Sort = () => {
   const [selected, setSelected] = useState(options[index]);
 
   const sortDateAdded = () => {
-    if (state.userBooks !== undefined && state.userBooks !== null) {
-      let newData = state.userBooks;
-      const sortedData = newData.sort((b, a) => {
-        return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
-      });
+    if (state.masterData !== undefined && state.masterData !== null) {
+      const sortedData = sortFunctionDateAdded(state.userBooks);
       setState({ masterData: sortedData });
     }
   };
 
   const sortDatePublished = () => {
     if (state.masterData !== undefined && state.masterData !== null) {
-      let newData = state.masterData;
-      const sortedData = newData.sort((b, a) => {
-        return (
-          new Date(a.volumeInfo.publishedDate) -
-          new Date(b.volumeInfo.publishedDate)
-        );
-      });
+      const sortedData = sortFunctionDatePublished(state.masterData);
       setState({ masterData: sortedData });
     }
   };
 
   const sortLength = () => {
     if (state.masterData !== undefined && state.masterData !== null) {
-      let newData = state.masterData;
-      const sortedData = newData.sort((b, a) => {
-        return (
-          new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount)
-        );
-      });
+      const sortedData = sortFunctionLength(state.masterData);
       setState({ masterData: sortedData });
-    }
-  };
-
-  const reOrder = () => {
-    if (state.masterData !== null && state.masterData.length > 1) {
-      let newData = state.masterData;
-      const reOrderedData = newData.reverse();
-      setState({ masterData: reOrderedData, page: null });
-
-      if (orderState === "down") {
-        setOrderState("up");
-        //setState({ sortOrderState: "up" });
-      } else {
-        setOrderState("down");
-        //setState({ sortOrderState: "down" });
-      }
     }
   };
 
@@ -95,6 +65,22 @@ const Sort = () => {
     }
   };
 
+  const reOrder = () => {
+    if (state.masterData !== null && state.masterData.length > 1) {
+      let newData = state.masterData;
+      const reOrderedData = newData.reverse();
+      setState({ masterData: reOrderedData, page: null });
+
+      if (orderState === "down") {
+        setOrderState("up");
+        //setState({ sortOrderState: "up" });
+      } else {
+        setOrderState("down");
+        //setState({ sortOrderState: "down" });
+      }
+    }
+  };
+
   useEffect(() => {
     // console.log(state.masterData !== null);
     // console.log(state.masterData !== "empty");
@@ -109,7 +95,7 @@ const Sort = () => {
         sortState: selected.label,
       });
     }
-  }, [selected, state.masterData]);
+  }, [selected]);
 
   return (
     <React.Fragment>
@@ -128,3 +114,27 @@ const Sort = () => {
 };
 
 export default Sort;
+
+export const sortFunctionDateAdded = (data) => {
+  const sortedData = data.sort((b, a) => {
+    return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
+  });
+  return sortedData;
+};
+
+export const sortFunctionDatePublished = (data) => {
+  const sortedData = data.sort((b, a) => {
+    return (
+      new Date(a.volumeInfo.publishedDate) -
+      new Date(b.volumeInfo.publishedDate)
+    );
+  });
+  return sortedData;
+};
+
+export const sortFunctionLength = (data) => {
+  const sortedData = data.sort((b, a) => {
+    return new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount);
+  });
+  return sortedData;
+};
