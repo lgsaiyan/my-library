@@ -8,6 +8,7 @@ import {
   sortFunctionDateAdded,
   sortFunctionDatePublished,
   sortFunctionLength,
+  reOrder,
 } from "./Sort";
 
 /**
@@ -48,6 +49,7 @@ const Library = ({ theUsersBooks }) => {
 
   const sortData = async () => {
     try {
+      console.log("I tried to Sort in Library");
       if (fauxData !== null && fauxData !== "empty") {
         //Maybe we don't need this since same as getUserBooks order???
         if (state.sortState === "Date Added") {
@@ -61,6 +63,13 @@ const Library = ({ theUsersBooks }) => {
         }
       }
     } catch (err) {}
+
+    //if(state.previousLocation === "detail") return
+    // if(state.orderState === "down"){
+    //   return
+    // } else fauxData = reOrder(fauxData);
+    // fauxData = reOrder(fauxData);
+    console.log("I reOrdered Data");
   };
 
   const updateState = () => {
@@ -115,16 +124,20 @@ const Library = ({ theUsersBooks }) => {
     updateState();
   };
 
-  useEffect(() => {
-    if (
-      state.previousLocation === "detail" //&&
-      //state.userBooksShouldUpdate === false
-    ) {
-      return;
-    } else {
-      determineAndUpdateData();
-    }
-  }, [theUsersBooks, searchData, state.page]);
+  useEffect(
+    () => {
+      if (
+        state.previousLocation === "detail" //&&
+        //state.userBooksShouldUpdate === false
+      ) {
+        return;
+      } else {
+        determineAndUpdateData();
+      }
+    },
+    [theUsersBooks, searchData, state.page],
+    state.orderState
+  );
 
   return (
     <React.Fragment>

@@ -20,8 +20,7 @@ const initialState = {
   booksPerPage: 5,
   previousLocation: null,
   sortState: "Date Added",
-  sortOrderState: "up",
-  userBooksShouldUpdate: false,
+  orderState: "up",
 };
 
 export function GeneralProvider(props) {
