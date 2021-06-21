@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders rating component 
+  */
 const Rating = () => {
   const { state } = useContext(GeneralContext);
   const [bookRating, setBookRating] = useState(null);

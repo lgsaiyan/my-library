@@ -4,6 +4,9 @@ import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
+/**
+  *Renders searchbar component 
+  */
 const SearchBar = () => {
   const [term, setTerm] = useState("");
   const { setSearchData } = useContext(SearchContext);

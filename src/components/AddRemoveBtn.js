@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 import google from "../api/googleBooks";
 
+/**
+  *Renders button to add or remove books from library 
+  */
 const AddRemoveBtn = () => {
   const { state, setState } = useContext(GeneralContext);
 

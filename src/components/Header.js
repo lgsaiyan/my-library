@@ -4,6 +4,9 @@ import SearchBar from "./SearchBar";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
+/**
+  *Renders header component 
+  */
 const Header = () => {
   const { state, setState } = useContext(GeneralContext);
 

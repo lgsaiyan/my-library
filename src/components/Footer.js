@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders footer component 
+  */
 const Footer = () => {
   const { state } = useContext(GeneralContext);
 

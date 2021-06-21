@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+  *Renders google sign in button
+  */
 const GoogleAuth = () => {
   const onClick = () => {
     const auth = window.gapi.auth2.getAuthInstance();

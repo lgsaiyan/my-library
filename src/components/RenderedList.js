@@ -6,6 +6,9 @@ import noImage from "../assets/no-img.png";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
 
+/**
+  *Renders cards inside Library component
+  */
 const RenderedList = () => {
   const { state } = useContext(GeneralContext);
   const { searchData } = useContext(SearchContext);

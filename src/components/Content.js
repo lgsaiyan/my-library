@@ -5,6 +5,9 @@ import AddRemoveBtn from "./AddRemoveBtn";
 import { GeneralContext } from "../contexts/General";
 import noImage from "../assets/no-img.png";
 
+/**
+  *Renders content component inside Detail page 
+  */
 const Content = () => {
   const { state } = useContext(GeneralContext);
   const [descriptionState, setDescriptionState] = useState(null);

@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import history from "../history";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders back button on book Detail page
+  */
 const Back = () => {
   const { setState } = useContext(GeneralContext);
 

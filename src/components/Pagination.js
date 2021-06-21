@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders pagination component 
+  */
 const Pagination = () => {
   const { state, setState } = useContext(GeneralContext);
 

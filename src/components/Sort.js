@@ -2,6 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders sorting component 
+  */
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
 

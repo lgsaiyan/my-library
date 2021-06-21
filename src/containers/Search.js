@@ -5,6 +5,9 @@ import Library from "../components/Library";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 
+/**
+  *Renders search page 
+  */
 const Search = () => {
   return (
     <React.Fragment>

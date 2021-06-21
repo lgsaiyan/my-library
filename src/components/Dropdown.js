@@ -1,6 +1,9 @@
 import "./dropdown.css";
 import React, { useState, useEffect, useRef } from "react";
 
+/**
+  *Renders dropdown component 
+  */
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();

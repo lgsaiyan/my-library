@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import history from "../history";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders card component; data is passed into this component from RenderedList component 
+  */
 const Card = (props) => {
   const { setState } = useContext(GeneralContext);
   const onClick = () => {

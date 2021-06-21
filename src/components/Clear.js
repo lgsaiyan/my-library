@@ -3,6 +3,9 @@ import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
+/**
+  *Renders clear search results button
+  */
 const Clear = () => {
   const { setSearchData } = useContext(SearchContext);
   const { setState } = useContext(GeneralContext);

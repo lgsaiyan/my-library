@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders sign-in page 
+  */
 const SignIn = () => {
   const { setState } = useContext(GeneralContext);
 

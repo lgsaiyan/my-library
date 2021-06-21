@@ -7,6 +7,9 @@ import Footer from "../components/Footer";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
 
+/**
+  *Renders home page 
+  */
 const Home = () => {
   const { state } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
