@@ -3,6 +3,7 @@ import RenderedList from "./RenderedList";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
+import { sampleGuestData } from "../api/sampleGuestData";
 import { computePagination } from "./Pagination";
 import {
   sortFunctionDateAdded,
@@ -23,8 +24,6 @@ const Library = ({ theUsersBooks }) => {
   const location = history.location.pathname;
   let fauxData = null;
 
-  console.log("I rendered Library, page: " + state.page);
-
   const determineDataType = async () => {
     try {
       if (location === "/search") {
@@ -35,12 +34,12 @@ const Library = ({ theUsersBooks }) => {
             return null;
           }
         }
-      } else if (location === "/home") {
+      } else if (location === "/home" && state.authStatus === true) {
         if (theUsersBooks !== null) {
           fauxData = theUsersBooks;
         }
-      } else {
-        fauxData = "empty";
+      } else if (state.authStatus === "guest") {
+        fauxData = sampleGuestData();
       }
     } catch (err) {
       console.log(err);
@@ -50,11 +49,7 @@ const Library = ({ theUsersBooks }) => {
   const sortData = async () => {
     if (location === "/home") {
       try {
-        if (
-          fauxData !== undefined &&
-          fauxData !== null &&
-          fauxData !== "empty"
-        ) {
+        if (fauxData !== undefined && fauxData !== null) {
           //Maybe we don't need this since same as getUserBooks order???
           if (state.sortState === "Date Added") {
             fauxData = sortFunctionDateAdded(fauxData);
@@ -76,7 +71,10 @@ const Library = ({ theUsersBooks }) => {
 
   const updateState = () => {
     const updatePagination = () => {
-      if (fauxData !== undefined && fauxData !== null && fauxData !== "empty") {
+      if (
+        fauxData !== undefined &&
+        fauxData !== null /*&& fauxData !== "empty"*/
+      ) {
         const fauxPaginationInfo = computePagination(
           fauxData,
           state.booksPerPage,

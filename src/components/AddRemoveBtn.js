@@ -3,8 +3,8 @@ import { GeneralContext } from "../contexts/General";
 import google from "../api/googleBooks";
 
 /**
-  *Renders button to add or remove books from library 
-  */
+ *Renders button to add or remove books from library
+ */
 const AddRemoveBtn = () => {
   const { state, setState } = useContext(GeneralContext);
 
@@ -26,8 +26,6 @@ const AddRemoveBtn = () => {
   let validate;
   if (state.userBooks) {
     validate = state.userBooks.find((el) => el.id === state.bookID_for_detail);
-    if (validate !== undefined) {
-    }
   } else {
     validate = undefined;
   }
@@ -35,53 +33,62 @@ const AddRemoveBtn = () => {
   const add = async () => {
     if (state.authStatus === "guest") {
       return alert("You must sign in to add books to your library!");
-    }
-
-    const postBook = async () => {
-      try {
-        const response = await google.post(
-          `/mylibrary/bookshelves/0/addVolume?volumeId=${state.bookID_for_detail}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${state.accessToken}`,
-              "Content-Type": "application/json",
-            },
+    } else {
+      const postBook = async () => {
+        try {
+          const response = await google.post(
+            `/mylibrary/bookshelves/0/addVolume?volumeId=${state.bookID_for_detail}`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${state.accessToken}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.status === 200) {
+            await getUsersBooks();
           }
-        );
-        if (response.status === 200) {
-          await getUsersBooks();
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    await postBook();
+      };
+      await postBook();
+    }
   };
 
   const remove = async () => {
-    const removeBook = async () => {
-      try {
-        const response = await google.post(
-          `/mylibrary/bookshelves/0/removeVolume?volumeId=${state.bookID_for_detail}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${state.accessToken}`,
-              "Content-Type": "application/json",
-            },
+    if (state.authStatus === "guest") {
+      return alert(
+        "You must sign in to add or remove books from your library!"
+      );
+    } else if (state.usingSampleData === true) {
+      return alert(
+        "This is a sample book; you cannot remove it. Please search for a real book to add to your library if you're dying to use this button."
+      );
+    } else {
+      const removeBook = async () => {
+        try {
+          const response = await google.post(
+            `/mylibrary/bookshelves/0/removeVolume?volumeId=${state.bookID_for_detail}`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${state.accessToken}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.status === 200) {
+            await getUsersBooks();
           }
-        );
-        if (response.status === 200) {
-          await getUsersBooks();
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      };
 
-    await removeBook();
+      await removeBook();
+    }
   };
 
   const button = () => {

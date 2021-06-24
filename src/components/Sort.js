@@ -3,8 +3,8 @@ import Dropdown from "./Dropdown";
 import { GeneralContext } from "../contexts/General";
 
 /**
-  *Renders sorting component 
-  */
+ *Renders sorting component
+ */
 const Sort = () => {
   const { state, setState } = useContext(GeneralContext);
 
@@ -66,32 +66,49 @@ const Sort = () => {
 export default Sort;
 
 export const sortFunctionDateAdded = (data) => {
-  const sortedData = data.sort((b, a) => {
-    return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
-  });
-  return sortedData;
+  if (data.length > 1) {
+    const sortedData = data.sort((b, a) => {
+      return new Date(a.userInfo.updated) - new Date(b.userInfo.updated);
+    });
+    return sortedData;
+  } else {
+    return data;
+  }
 };
 
 export const sortFunctionDatePublished = (data) => {
-  const sortedData = data.sort((b, a) => {
-    return (
-      new Date(a.volumeInfo.publishedDate) -
-      new Date(b.volumeInfo.publishedDate)
-    );
-  });
-  return sortedData;
+  if (data.length > 1) {
+    const sortedData = data.sort((b, a) => {
+      return (
+        new Date(a.volumeInfo.publishedDate) -
+        new Date(b.volumeInfo.publishedDate)
+      );
+    });
+    return sortedData;
+  } else {
+    return data;
+  }
 };
 
 export const sortFunctionLength = (data) => {
-  const sortedData = data.sort((b, a) => {
-    return new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount);
-  });
-  return sortedData;
+  if (data.length > 1) {
+    const sortedData = data.sort((b, a) => {
+      return (
+        new Date(a.volumeInfo.pageCount) - new Date(b.volumeInfo.pageCount)
+      );
+    });
+    return sortedData;
+  } else {
+    return data;
+  }
 };
 
 export const reOrder = (data) => {
+  console.log(data);
   if (data !== null && data.length > 1) {
     const reOrderedData = data.reverse();
     return reOrderedData;
+  } else {
+    return data;
   }
 };

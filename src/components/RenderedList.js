@@ -7,8 +7,8 @@ import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
 
 /**
-  *Renders cards inside Library component
-  */
+ *Renders cards inside Library component
+ */
 const RenderedList = () => {
   const { state } = useContext(GeneralContext);
   const { searchData } = useContext(SearchContext);
@@ -28,8 +28,13 @@ const RenderedList = () => {
   };
   getSearchResultsChecker();
 
+  console.log(state.masterData);
+  console.log(data);
+  console.log(renderData);
+
   // Data is either "loading", the search results or users bookshelf
-  if (state.authStatus === "guest" && location !== "/search") {
+  /*if (state.authStatus === "guest" && location !== "/search") {
+    //input dake data here! 
     return (
       <Card
         id={null}
@@ -41,6 +46,7 @@ const RenderedList = () => {
       />
     );
   } else if (data === "empty") {
+    //input fake data here
     return (
       <Card
         id={null}
@@ -51,11 +57,12 @@ const RenderedList = () => {
         key={2000}
       />
     );
-  } else if (location === "/search" && data !== searchResults) {
+  } else */ if (location === "/search" && data !== searchResults) {
     return <LoadSpinner />;
-  } else if (location === "/home" && data !== state.userBooks) {
+  }
+  /*else if (location === "/home" && data !== state.masterData) {
     return <LoadSpinner />;
-  } else if (data) {
+  } else */ if (data) {
     const list = renderData.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;

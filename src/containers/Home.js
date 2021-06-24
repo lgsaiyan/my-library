@@ -6,12 +6,13 @@ import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
+import { sampleUserData } from "../api/sampleUserData";
 
 /**
-  *Renders home page 
-  */
+ *Renders home page
+ */
 const Home = () => {
-  const { state } = useContext(GeneralContext);
+  const { state, setState } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
   console.log("I rendered Home");
 
@@ -22,11 +23,19 @@ const Home = () => {
           Authorization: `Bearer ${state.accessToken}`,
         },
       });
-
-      const results = Object.values(response.data.items);
-
-      setTheUsersBooks(results);
-      console.log("Got the usersbook from HOME!");
+      console.log(response.data.items);
+      if (response.data.items !== null && response.data.items !== undefined) {
+        const results = Object.values(response.data.items);
+        setTheUsersBooks(results);
+        if (state.usingSampleData === true) {
+          setState({ usingSampleData: false });
+        }
+        console.log("Got the usersbook from HOME!");
+      } else {
+        setTheUsersBooks(sampleUserData());
+        setState({ usingSampleData: true });
+        console.log("I set sample user data");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +45,9 @@ const Home = () => {
     if (state.authStatus === true) {
       getUsersBooks();
     }
-  }, [state.accessToken]);
+  }, [state.accessToken, state.usingSampleData]);
+
+  console.log(theUsersBooks);
 
   return (
     <React.Fragment>
