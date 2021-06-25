@@ -79,9 +79,12 @@
     background-color: var(--color-grey-light-2);
     border-radius: 10px;
     padding: 0.7rem 2rem;
-    transition: all 0.2s;
+    transition: all 0.3s;
     margin-right: -3.5rem;
     width: 85%;
+    transition-property: width;
+    transition-duration: 0.2s;
+    transition-delay: 0.2s;
 
     &:focus {
       outline: none;
@@ -97,10 +100,16 @@
   &__input:focus + &__icon {
     background-color: var(--color-grey-light-3);
   }
+  /*
+  &__input:focus + &__btn {
+    transform: translateX(-1rem);
+  }*/
 
   &__btn {
     border: none;
     background-color: var(--color-grey-light-2);
+    cursor: pointer;
+    z-index: 50;
 
     &:focus {
       outline: none;
