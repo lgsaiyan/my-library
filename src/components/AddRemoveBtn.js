@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 import google from "../api/googleBooks";
+import { sampleUserData } from "../api/sampleUserData";
 
 /**
  *Renders button to add or remove books from library
@@ -15,9 +16,15 @@ const AddRemoveBtn = () => {
           Authorization: `Bearer ${state.accessToken}`,
         },
       });
-
-      const results = Object.values(response.data.items);
-      setState({ userBooks: results });
+      if (response.data.items !== null && response.data.items !== undefined) {
+        const results = Object.values(response.data.items);
+        setState({ userBooks: results });
+        if (state.usingSampleData === true) {
+          setState({ usingSampleData: false });
+        }
+      } else {
+        setState({ userBooks: sampleUserData(), usingSampleData: true });
+      }
     } catch (err) {
       console.log(err);
     }
