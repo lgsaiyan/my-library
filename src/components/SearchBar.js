@@ -5,8 +5,8 @@ import { GeneralContext } from "../contexts/General";
 import history from "../history";
 
 /**
-  *Renders searchbar component 
-  */
+ *Renders searchbar component
+ */
 const SearchBar = () => {
   const [term, setTerm] = useState("");
   const { setSearchData } = useContext(SearchContext);
@@ -33,8 +33,10 @@ const SearchBar = () => {
   };
 
   const onSubmit = async () => {
-    query();
-    history.push("/search");
+    if (term !== "") {
+      query();
+      history.push("/search");
+    }
   };
 
   useEffect(() => {

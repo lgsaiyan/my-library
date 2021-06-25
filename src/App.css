@@ -115,6 +115,7 @@ body {
   grid-row: 1;
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none;
 }
 .logo:hover svg {
   transform: translateY(5px);
@@ -131,9 +132,9 @@ body {
   grid-row: 1;
   display: flex;
 }
-
 .sign-out__btn {
   justify-self: end;
+  text-decoration: none;
 }
 
 .search-bar {
@@ -144,6 +145,10 @@ body {
   min-width: 26rem;
   width: 50%;
   margin-right: 1.75rem;
+  /*
+  &__input:focus + &__btn {
+    transform: translateX(-1rem);
+  }*/
 }
 @media only screen and (max-width: 43.75em) {
   .search-bar {
@@ -163,9 +168,12 @@ body {
   background-color: var(--color-grey-light-2);
   border-radius: 10px;
   padding: 0.7rem 2rem;
-  transition: all 0.2s;
+  transition: all 0.3s;
   margin-right: -3.5rem;
   width: 85%;
+  transition-property: width;
+  transition-duration: 0.2s;
+  transition-delay: 0.2s;
 }
 .search-bar__input:focus {
   outline: none;
@@ -181,6 +189,8 @@ body {
 .search-bar__btn {
   border: none;
   background-color: var(--color-grey-light-2);
+  cursor: pointer;
+  z-index: 50;
 }
 .search-bar__btn:focus {
   outline: none;
@@ -660,7 +670,7 @@ body {
   justify-items: center;
   align-items: center;
   align-content: center;
-  padding: 0 2rem;
+  transition: all 1s;
 }
 @media only screen and (max-width: 37.5em) {
   .content__search {
@@ -670,6 +680,8 @@ body {
 }
 
 .exit {
+  padding-top: 1.44rem;
+  padding-bottom: 1.44rem;
   text-align: center;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
