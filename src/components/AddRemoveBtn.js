@@ -6,7 +6,7 @@ import { sampleUserData } from "../api/sampleUserData";
 /**
  *Renders button to add or remove books from library
  */
-const AddRemoveBtn = () => {
+const AddRemoveBtn = ( {handleErrorState} ) => {
   const { state, setState } = useContext(GeneralContext);
 
   const getUsersBooks = async () => {
@@ -39,7 +39,7 @@ const AddRemoveBtn = () => {
 
   const add = async () => {
     if (state.authStatus === "guest") {
-      return alert("You must sign in to add books to your library!");
+      handleErrorState("You must sign in to add books to your library!")
     } else {
       const postBook = async () => {
         try {
@@ -66,11 +66,12 @@ const AddRemoveBtn = () => {
 
   const remove = async () => {
     if (state.authStatus === "guest") {
-      return alert(
-        "You must sign in to add or remove books from your library!"
+      handleErrorState(
+        "You must sign in to remove books from your library!"
       );
+
     } else if (state.usingSampleData === true) {
-      return alert(
+      handleErrorState(
         "This is a sample book; you cannot remove it. Please search for a real book to add to your library if you're dying to use this button."
       );
     } else {

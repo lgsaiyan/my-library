@@ -11,6 +11,7 @@ import noImage from "../assets/no-img.png";
 const Content = () => {
   const { state } = useContext(GeneralContext);
   const [descriptionState, setDescriptionState] = useState(null);
+  const [error, setError] = useState(undefined)
 
   const scrollReset = () => {
     window.scrollTo(0, 0);
@@ -132,6 +133,16 @@ const Content = () => {
     }
   };
 
+  const handleError= () => {
+    return (
+      <div style={{color: "red", justifyContent: "center", display: "flex", gridColumn: "1 / 3"}}>{error}</div>
+    )
+  };
+
+  const handleErrorState = (error) => {
+    setError(error);
+  };
+
   return (
     <div className="content__book">
       <Back />
@@ -165,7 +176,8 @@ const Content = () => {
         </div>
       </div>
       <Rating />
-      <AddRemoveBtn />
+      <AddRemoveBtn handleErrorState={handleErrorState} />
+      {error ? handleError() : null }
     </div>
   );
 };

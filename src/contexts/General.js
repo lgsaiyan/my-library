@@ -16,7 +16,7 @@ const initialState = {
   paginationData: null,
   page: 1,
   totalPages: null,
-  booksPerPage: 5,
+  booksPerPage: 10,
   previousLocation: null,
   sortState: "Date Added",
   orderState: "up",

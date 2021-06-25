@@ -28,41 +28,9 @@ const RenderedList = () => {
   };
   getSearchResultsChecker();
 
-  console.log(state.masterData);
-  console.log(data);
-  console.log(renderData);
-
-  // Data is either "loading", the search results or users bookshelf
-  /*if (state.authStatus === "guest" && location !== "/search") {
-    //input dake data here! 
-    return (
-      <Card
-        id={null}
-        title={"You must sign in to view your library!"}
-        author={"You can still search, though."}
-        rating={<div class="library__book__rating__star">&#9733;</div>}
-        img={noImage}
-        key={1000}
-      />
-    );
-  } else if (data === "empty") {
-    //input fake data here
-    return (
-      <Card
-        id={null}
-        title={"You have no books :("}
-        author={"Do you even read?"}
-        rating={<div class="library__book__rating__star">&#9733;</div>}
-        img={noImage}
-        key={2000}
-      />
-    );
-  } else */ if (location === "/search" && data !== searchResults) {
+if (location === "/search" && data !== searchResults) {
     return <LoadSpinner />;
-  }
-  /*else if (location === "/home" && data !== state.masterData) {
-    return <LoadSpinner />;
-  } else */ if (data) {
+  } else if (data) {
     const list = renderData.map((book) => {
       const { volumeInfo } = book;
       const { title, authors, imageLinks } = volumeInfo;
