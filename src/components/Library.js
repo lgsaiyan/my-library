@@ -3,7 +3,7 @@ import RenderedList from "./RenderedList";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
-import { sampleGuestData } from "../api/sampleGuestData";
+import { sampleGuestData } from "../data";
 import { computePagination } from "./Pagination";
 import {
   sortFunctionDateAdded,
@@ -11,6 +11,7 @@ import {
   sortFunctionLength,
   reOrder,
 } from "./Sort";
+import { GUEST_STATUS, HOME_LOCATION, SEARCH_LOCATION } from "../constants";
 
 /**
  * Renders the users library of books OR the search results.
@@ -24,33 +25,38 @@ const Library = ({ theUsersBooks }) => {
   const location = history.location.pathname;
   let fauxData = null;
 
+  /**
+   * Determines whether to provide sample data or make an api request.
+   */
   const determineDataType = async () => {
     try {
-      if (location === "/search") {
+      if (location === SEARCH_LOCATION) {
         if (searchData !== null) {
           if (searchData.results !== null) {
             fauxData = searchData.results;
           } else {
-            return null;
+            return;
           }
         }
-      } else if (location === "/home" && state.authStatus === true) {
+      } else if (location === HOME_LOCATION && state.authStatus === true) {
         if (theUsersBooks !== null) {
           fauxData = theUsersBooks;
         }
-      } else if (state.authStatus === "guest") {
-        fauxData = sampleGuestData();
+      } else if (state.authStatus === GUEST_STATUS) {
+        fauxData = sampleGuestData;
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
+  /**
+   * Sorts data based on the provided sorting type.
+   */
   const sortData = async () => {
-    if (location === "/home") {
+    if (location === HOME_LOCATION) {
       try {
         if (fauxData !== undefined && fauxData !== null) {
-          //Maybe we don't need this since same as getUserBooks order???
           if (state.sortState === "Date Added") {
             fauxData = sortFunctionDateAdded(fauxData);
           }
@@ -69,7 +75,11 @@ const Library = ({ theUsersBooks }) => {
     }
   };
 
+  /**
+   * Updates the react state with data to display.
+   */
   const updateState = () => {
+    // TODO: Refactor the functions in this block
     const updatePagination = () => {
       if (
         fauxData !== undefined &&
@@ -105,7 +115,7 @@ const Library = ({ theUsersBooks }) => {
     const updateUserBooks = () => {
       if (state.userBooks === fauxData) {
         return null;
-      } else if (theUsersBooks !== null && location === "/home") {
+      } else if (theUsersBooks !== null && location === HOME_LOCATION) {
         setState({ userBooks: theUsersBooks });
       }
     };

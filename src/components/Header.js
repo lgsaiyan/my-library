@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
+import { HOME_LOCATION, ROOT_LOCATION } from "../constants";
 
 /**
   *Renders header component 
@@ -16,14 +17,14 @@ const Header = () => {
       auth.signOut();
       setState({ userBooks: null });
     } else {
-      history.push("/");
+      history.push(ROOT_LOCATION);
     }
   };
 
   return (
     <React.Fragment>
       <header className="header">
-        <Link to="/home" className="logo">
+        <Link to={HOME_LOCATION} className="logo">
           <svg className="logo__svg">
             <use xlinkHref="img/sprite.svg#icon-books"></use>
           </svg>

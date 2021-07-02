@@ -5,6 +5,7 @@ import { SearchContext } from "../contexts/Search";
 import noImage from "../assets/no-img.png";
 import LoadSpinner from "../LoadSpinner/LoadSpinner";
 import history from "../history";
+import { SEARCH_LOCATION } from "../constants";
 
 /**
  *Renders cards inside Library component
@@ -28,7 +29,7 @@ const RenderedList = () => {
   };
   getSearchResultsChecker();
 
-if (location === "/search" && data !== searchResults) {
+if (location === SEARCH_LOCATION && data !== searchResults) {
     return <LoadSpinner />;
   } else if (data) {
     const list = renderData.map((book) => {

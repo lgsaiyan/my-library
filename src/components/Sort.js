@@ -104,7 +104,7 @@ export const sortFunctionLength = (data) => {
 };
 
 export const reOrder = (data) => {
-  console.log(data);
+  console.error(data);
   if (data !== null && data.length > 1) {
     const reOrderedData = data.reverse();
     return reOrderedData;

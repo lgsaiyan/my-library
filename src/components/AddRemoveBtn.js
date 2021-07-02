@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 import google from "../api/googleBooks";
-import { sampleUserData } from "../api/sampleUserData";
+import { sampleUserData } from "../data";
 
 /**
- *Renders button to add or remove books from library
- */
+  * Renders button to add or remove books from library
+  * @param {*} handleErrorState 
+  * @returns the react button for adding and removing books.
+  */
 const AddRemoveBtn = ( {handleErrorState} ) => {
   const { state, setState } = useContext(GeneralContext);
 
+  /**
+   * 
+   */
   const getUsersBooks = async () => {
     try {
       const response = await google.get("/mylibrary/bookshelves/0/volumes", {
@@ -23,10 +28,10 @@ const AddRemoveBtn = ( {handleErrorState} ) => {
           setState({ usingSampleData: false });
         }
       } else {
-        setState({ userBooks: sampleUserData(), usingSampleData: true });
+        setState({ userBooks: sampleUserData, usingSampleData: true });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -57,7 +62,7 @@ const AddRemoveBtn = ( {handleErrorState} ) => {
             await getUsersBooks();
           }
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       };
       await postBook();
@@ -91,7 +96,7 @@ const AddRemoveBtn = ( {handleErrorState} ) => {
             await getUsersBooks();
           }
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       };
 

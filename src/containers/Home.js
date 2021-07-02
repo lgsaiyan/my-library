@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import google from "../api/googleBooks";
 import { GeneralContext } from "../contexts/General";
-import { sampleUserData } from "../api/sampleUserData";
+import { sampleUserData } from "../data";
 
 /**
  *Renders home page
@@ -14,7 +14,6 @@ import { sampleUserData } from "../api/sampleUserData";
 const Home = () => {
   const { state, setState } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
-  console.log("I rendered Home");
 
   const getUsersBooks = async () => {
     try {
@@ -23,7 +22,6 @@ const Home = () => {
           Authorization: `Bearer ${state.accessToken}`,
         },
       });
-      console.log(response.data.items);
       if (response.data.items !== null && response.data.items !== undefined) {
         const results = Object.values(response.data.items);
         setTheUsersBooks(results);
@@ -31,11 +29,11 @@ const Home = () => {
           setState({ usingSampleData: false });
         }
       } else {
-        setTheUsersBooks(sampleUserData());
+        setTheUsersBooks(sampleUserData);
         setState({ usingSampleData: true });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
