@@ -65,6 +65,11 @@ const Sort = () => {
 
 export default Sort;
 
+/**
+ * Sorts data based on date added to user books
+ * @param {*} data
+ * @returns new array
+ */
 export const sortFunctionDateAdded = (data) => {
   if (data.length > 1) {
     const sortedData = data.sort((b, a) => {
@@ -76,6 +81,11 @@ export const sortFunctionDateAdded = (data) => {
   }
 };
 
+/**
+ * Sorts data based on date published
+ * @param {*} data
+ * @returns new array
+ */
 export const sortFunctionDatePublished = (data) => {
   if (data.length > 1) {
     const sortedData = data.sort((b, a) => {
@@ -90,6 +100,11 @@ export const sortFunctionDatePublished = (data) => {
   }
 };
 
+/**
+ * Sorts data based on length of book
+ * @param {*} data
+ * @returns new array
+ */
 export const sortFunctionLength = (data) => {
   if (data.length > 1) {
     const sortedData = data.sort((b, a) => {
@@ -104,7 +119,6 @@ export const sortFunctionLength = (data) => {
 };
 
 export const reOrder = (data) => {
-  console.error(data);
   if (data !== null && data.length > 1) {
     const reOrderedData = data.reverse();
     return reOrderedData;

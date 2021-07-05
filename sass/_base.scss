@@ -61,10 +61,6 @@ body {
   background-repeat: no-repeat;
 
   min-height: calc(100vh-6rem);
-
-  // @media only screen and (max-width: $bp-medium-small) {
-  //     min-height: calc(100vh-6rem);
-  // }
 }
 
 /// General Layout ////////////////////////////////////
@@ -103,9 +99,6 @@ body {
   grid-template-columns: max-content 1fr max-content;
   align-items: center;
   justify-items: center;
-
-  // @media only screen and (max-width: $bp-medium-small) {
-  // }
 }
 
 /// See specfiic page scss files for content layout ///

@@ -4,6 +4,9 @@ export const sampleGuestData = [
     id: "u13hVoYVZa8C",
     etag: "TYy7dvFx9ms",
     selfLink: "https://www.googleapis.com/books/v1/volumes/u13hVoYVZa8C",
+    userInfo: {
+      updated: 1,
+    },
     volumeInfo: {
       title: "Planning Extreme Programming",
       authors: ["Mike Hendrickson", "Kent Beck", "Martin Fowler"],
@@ -83,6 +86,9 @@ export const sampleGuestData = [
     id: "nCdFDwAAQBAJ",
     etag: "NNgoXV9cErY",
     selfLink: "https://www.googleapis.com/books/v1/volumes/nCdFDwAAQBAJ",
+    userInfo: {
+      updated: 2,
+    },
     volumeInfo: {
       title: "Guide to Competitive Programming",
       subtitle: "Learning and Improving Algorithms Through Contests",
@@ -206,6 +212,9 @@ export const sampleGuestData = [
     id: "qAOhDwAAQBAJ",
     etag: "KBZV+zYJ0DA",
     selfLink: "https://www.googleapis.com/books/v1/volumes/qAOhDwAAQBAJ",
+    userInfo: {
+      updated: 3,
+    },
     volumeInfo: {
       title: "The Rust Programming Language (Covers Rust 2018)",
       authors: ["Steve Klabnik", "Carol Nichols"],
@@ -307,6 +316,9 @@ export const sampleGuestData = [
     id: "rOCfDwAAQBAJ",
     etag: "flUZutpRQ8c",
     selfLink: "https://www.googleapis.com/books/v1/volumes/rOCfDwAAQBAJ",
+    userInfo: {
+      updated: 4,
+    },
     volumeInfo: {
       title: "Elements of Programming",
       authors: ["Alexander Stepanov", "Paul McJones"],
@@ -379,6 +391,9 @@ export const sampleGuestData = [
     id: "pXDzdJ_1E3oC",
     etag: "G5ZEarle5gY",
     selfLink: "https://www.googleapis.com/books/v1/volumes/pXDzdJ_1E3oC",
+    userInfo: {
+      updated: 5,
+    },
     volumeInfo: {
       title: "Practical C++ Programming",
       authors: ["Steve Oualline"],
@@ -458,6 +473,9 @@ export const sampleGuestData = [
     id: "bIxWAgAAQBAJ",
     etag: "6SN3zpNYlN4",
     selfLink: "https://www.googleapis.com/books/v1/volumes/bIxWAgAAQBAJ",
+    userInfo: {
+      updated: 6,
+    },
     volumeInfo: {
       title: "Masterminds of Programming",
       subtitle:
@@ -535,6 +553,9 @@ export const sampleGuestData = [
     id: "OJwXEAAAQBAJ",
     etag: "KKAfIXmon2A",
     selfLink: "https://www.googleapis.com/books/v1/volumes/OJwXEAAAQBAJ",
+    userInfo: {
+      updated: 7,
+    },
     volumeInfo: {
       title: "Beginning Rust Programming",
       authors: ["Ric Messier"],
@@ -612,6 +633,9 @@ export const sampleGuestData = [
     id: "y6FLBQAAQBAJ",
     etag: "xPoaL9RDKqI",
     selfLink: "https://www.googleapis.com/books/v1/volumes/y6FLBQAAQBAJ",
+    userInfo: {
+      updated: 8,
+    },
     volumeInfo: {
       title: "Elements of Programming Interviews",
       subtitle: "The Insiders' Guide",
@@ -718,6 +742,9 @@ export const sampleGuestData = [
     id: "Sxss1kQxfP0C",
     etag: "QX4VyDSyBss",
     selfLink: "https://www.googleapis.com/books/v1/volumes/Sxss1kQxfP0C",
+    userInfo: {
+      updated: 9,
+    },
     volumeInfo: {
       title: "The Way to Go",
       subtitle: "A Thorough Introduction to the Go Programming Language",
@@ -796,6 +823,9 @@ export const sampleGuestData = [
     id: "jcUbTcr5XWwC",
     etag: "etAUITjRweE",
     selfLink: "https://www.googleapis.com/books/v1/volumes/jcUbTcr5XWwC",
+    userInfo: {
+      updated: 10,
+    },
     volumeInfo: {
       title: "The Ruby Programming Language",
       subtitle: "Everything You Need to Know",
@@ -900,14 +930,13 @@ export const sampleGuestData = [
     id: "LZY1vgEACAAJ",
     etag: "VP2Ld3Cpr8M",
     selfLink: "https://www.googleapis.com/books/v1/volumes/LZY1vgEACAAJ",
+    userInfo: {
+      updated: 11,
+    },
     volumeInfo: {
       title: "Programming Quantum Computers",
       subtitle: "Essential Algorithms and Code Samples",
-      authors: [
-        "Eric R. Johnston",
-        "Mercedes Gimeno-Segovia",
-        "Nic Harrigan",
-      ],
+      authors: ["Eric R. Johnston", "Mercedes Gimeno-Segovia", "Nic Harrigan"],
       publisher: "O'Reilly Media",
       publishedDate: "2019-09-04",
       description:
@@ -984,6 +1013,9 @@ export const sampleGuestData = [
     id: "BOyCSAAACAAJ",
     etag: "waWYQ28rez0",
     selfLink: "https://www.googleapis.com/books/v1/volumes/BOyCSAAACAAJ",
+    userInfo: {
+      updated: 12,
+    },
     volumeInfo: {
       title: "Python Programming",
       subtitle: "An Introduction to Computer Science",
@@ -1059,6 +1091,9 @@ export const sampleGuestData = [
     id: "obqOzQEACAAJ",
     etag: "p5w/LwcTGD0",
     selfLink: "https://www.googleapis.com/books/v1/volumes/obqOzQEACAAJ",
+    userInfo: {
+      updated: 13,
+    },
     volumeInfo: {
       title: "Computer Programming in C for Beginners",
       authors: ["Avelino J. Gonzalez"],
@@ -1136,6 +1171,9 @@ export const sampleGuestData = [
     id: "w-P7DwAAQBAJ",
     etag: "UURt/My2exM",
     selfLink: "https://www.googleapis.com/books/v1/volumes/w-P7DwAAQBAJ",
+    userInfo: {
+      updated: 14,
+    },
     volumeInfo: {
       title: "Integer Programming",
       authors: ["Laurence A. Wolsey"],
@@ -1213,6 +1251,9 @@ export const sampleGuestData = [
     id: "ZPneDQAAQBAJ",
     etag: "Ay6IRb3Lp+c",
     selfLink: "https://www.googleapis.com/books/v1/volumes/ZPneDQAAQBAJ",
+    userInfo: {
+      updated: 15,
+    },
     volumeInfo: {
       title: "Invent Your Own Computer Games with Python, 4th Edition",
       authors: ["Al Sweigart"],
@@ -1290,6 +1331,9 @@ export const sampleGuestData = [
     id: "IL34DwAAQBAJ",
     etag: "4ePxT4zsL7w",
     selfLink: "https://www.googleapis.com/books/v1/volumes/IL34DwAAQBAJ",
+    userInfo: {
+      updated: 16,
+    },
     volumeInfo: {
       title: "The Audio Programming Book",
       authors: ["Richard Charles Boulanger", "Victor Lazzarini"],
@@ -1367,6 +1411,9 @@ export const sampleGuestData = [
     id: "_VFnDwAAQBAJ",
     etag: "y1RI/kUw+fc",
     selfLink: "https://www.googleapis.com/books/v1/volumes/_VFnDwAAQBAJ",
+    userInfo: {
+      updated: 17,
+    },
     volumeInfo: {
       title: "Programming Games for Intellivision",
       authors: ["Oscar Toledo Gutierrez"],
@@ -1444,6 +1491,9 @@ export const sampleGuestData = [
     id: "myABFGzN30MC",
     etag: "Yx6+WXruris",
     selfLink: "https://www.googleapis.com/books/v1/volumes/myABFGzN30MC",
+    userInfo: {
+      updated: 18,
+    },
     volumeInfo: {
       title: "Access VBA Programming",
       authors: ["Charles E. Brown", "Ron Petrusha"],
@@ -1523,6 +1573,9 @@ export const sampleGuestData = [
     id: "c_U3MQAACAAJ",
     etag: "/Cn+1+kNmKg",
     selfLink: "https://www.googleapis.com/books/v1/volumes/c_U3MQAACAAJ",
+    userInfo: {
+      updated: 19,
+    },
     volumeInfo: {
       title: "Get Programming with F#",
       subtitle: "A Guide for . NET Developers",
@@ -1601,6 +1654,9 @@ export const sampleGuestData = [
     id: "UmRSCwAAQBAJ",
     etag: "l2PcgSkZcYw",
     selfLink: "https://www.googleapis.com/books/v1/volumes/UmRSCwAAQBAJ",
+    userInfo: {
+      updated: 20,
+    },
     volumeInfo: {
       title: "Learning Scientific Programming with Python",
       authors: ["Christian Hill"],
@@ -1674,6 +1730,9 @@ export const sampleGuestData = [
     id: "5wBQEp6ruIAC",
     etag: "qYs64ewuwfU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/5wBQEp6ruIAC",
+    userInfo: {
+      updated: 21,
+    },
     volumeInfo: {
       title: "The Pragmatic Programmer",
       subtitle: "From Journeyman to Master",
@@ -1778,6 +1837,9 @@ export const sampleGuestData = [
     id: "IEfrgMr5EewC",
     etag: "LMiyo/hqUn0",
     selfLink: "https://www.googleapis.com/books/v1/volumes/IEfrgMr5EewC",
+    userInfo: {
+      updated: 22,
+    },
     volumeInfo: {
       title: "Object-oriented C++ Programming",
       authors: ["Hirday Narayan Yadav"],
@@ -1855,6 +1917,9 @@ export const sampleGuestData = [
     id: "jq8-RwAACAAJ",
     etag: "IquJ/HfYwFU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/jq8-RwAACAAJ",
+    userInfo: {
+      updated: 23,
+    },
     volumeInfo: {
       title: "Programming Language Pragmatics",
       authors: ["Michael Lee Scott"],
@@ -1930,6 +1995,9 @@ export const sampleGuestData = [
     id: "gobuDQAAQBAJ",
     etag: "0A9p1XWVKhA",
     selfLink: "https://www.googleapis.com/books/v1/volumes/gobuDQAAQBAJ",
+    userInfo: {
+      updated: 24,
+    },
     volumeInfo: {
       title:
         "Cambridge IGCSE® and O Level Computer Science Programming Book for Python",
@@ -2010,6 +2078,9 @@ export const sampleGuestData = [
     id: "NKhVDtXufnoC",
     etag: "z1voZlTPygE",
     selfLink: "https://www.googleapis.com/books/v1/volumes/NKhVDtXufnoC",
+    userInfo: {
+      updated: 25,
+    },
     volumeInfo: {
       title: "Professional Windows Vista Gadgets Programming",
       authors: ["Wei-Meng Lee"],
@@ -2083,6 +2154,9 @@ export const sampleGuestData = [
     id: "hxOpAwAAQBAJ",
     etag: "l1HZ8asfEBQ",
     selfLink: "https://www.googleapis.com/books/v1/volumes/hxOpAwAAQBAJ",
+    userInfo: {
+      updated: 26,
+    },
     volumeInfo: {
       title: "Programming",
       subtitle: "Principles and Practice Using C++",
@@ -2163,6 +2237,9 @@ export const sampleGuestData = [
     id: "OZhAL0K1k_0C",
     etag: "2f/M9JuFglU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/OZhAL0K1k_0C",
+    userInfo: {
+      updated: 27,
+    },
     volumeInfo: {
       title: "Perl Programming for Medicine and Biology",
       authors: ["Jules J. Berman"],
@@ -2240,6 +2317,9 @@ export const sampleGuestData = [
     id: "b-2oDwAAQBAJ",
     etag: "yqvJDmBKxr8",
     selfLink: "https://www.googleapis.com/books/v1/volumes/b-2oDwAAQBAJ",
+    userInfo: {
+      updated: 28,
+    },
     volumeInfo: {
       title: "Python Programming in Context",
       authors: ["Bradley N. Miller", "David L. Ranum", "Julie Anderson"],
@@ -2317,6 +2397,9 @@ export const sampleGuestData = [
     id: "wNWHUS69DrcC",
     etag: "FMsa4fLUnYg",
     selfLink: "https://www.googleapis.com/books/v1/volumes/wNWHUS69DrcC",
+    userInfo: {
+      updated: 29,
+    },
     volumeInfo: {
       title: "An Introduction to Programming with IDL",
       subtitle: "Interactive Data Language",
@@ -2394,6 +2477,9 @@ export const sampleGuestData = [
     id: "9fIwBQAAQBAJ",
     etag: "af+0VqW4IGA",
     selfLink: "https://www.googleapis.com/books/v1/volumes/9fIwBQAAQBAJ",
+    userInfo: {
+      updated: 30,
+    },
     volumeInfo: {
       title: "Game Programming Patterns",
       authors: ["Robert Nystrom"],
@@ -2497,6 +2583,9 @@ export const sampleGuestData = [
     id: "w4Lo8LmQe3MC",
     etag: "EimYjxJeuhU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/w4Lo8LmQe3MC",
+    userInfo: {
+      updated: 31,
+    },
     volumeInfo: {
       title: "Programming from the Ground Up",
       authors: ["Jonathan Bartlett", "Dominick Bruno"],
@@ -2572,6 +2661,9 @@ export const sampleGuestData = [
     id: "7PPnCAAAQBAJ",
     etag: "IPu5kTeYfBI",
     selfLink: "https://www.googleapis.com/books/v1/volumes/7PPnCAAAQBAJ",
+    userInfo: {
+      updated: 32,
+    },
     volumeInfo: {
       title: "Fractional Programming",
       subtitle: "Theory, Methods and Applications",
@@ -2691,6 +2783,9 @@ export const sampleGuestData = [
     id: "3BEKzgEACAAJ",
     etag: "ykwnrv75pss",
     selfLink: "https://www.googleapis.com/books/v1/volumes/3BEKzgEACAAJ",
+    userInfo: {
+      updated: 33,
+    },
     volumeInfo: {
       title: "An Introduction to Programming Using Alice 2.2",
       authors: ["Charles W. Herbert"],
@@ -2768,6 +2863,9 @@ export const sampleGuestData = [
     id: "Kddop7KCLuIC",
     etag: "hXytEVZr4NU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/Kddop7KCLuIC",
+    userInfo: {
+      updated: 34,
+    },
     volumeInfo: {
       title: "Automatic Quantum Computer Programming",
       subtitle: "A Genetic Programming Approach",
@@ -2848,6 +2946,9 @@ export const sampleGuestData = [
     id: "3RhKDwAAQBAJ",
     etag: "r5zl0rn99mA",
     selfLink: "https://www.googleapis.com/books/v1/volumes/3RhKDwAAQBAJ",
+    userInfo: {
+      updated: 35,
+    },
     volumeInfo: {
       title: "Java Programming for Beginners",
       subtitle: "Learn the fundamentals of programming with Java",
@@ -2950,6 +3051,9 @@ export const sampleGuestData = [
     id: "SJHvCgAAQBAJ",
     etag: "KD5POjxHQMw",
     selfLink: "https://www.googleapis.com/books/v1/volumes/SJHvCgAAQBAJ",
+    userInfo: {
+      updated: 36,
+    },
     volumeInfo: {
       title: "The Go Programming Language",
       authors: ["Alan A. A. Donovan", "Brian W. Kernighan"],
@@ -3055,6 +3159,9 @@ export const sampleGuestData = [
     id: "piJPAAAAMAAJ",
     etag: "Am5o4j7IyL4",
     selfLink: "https://www.googleapis.com/books/v1/volumes/piJPAAAAMAAJ",
+    userInfo: {
+      updated: 37,
+    },
     volumeInfo: {
       title: "Programmers and Managers",
       subtitle:
@@ -3130,6 +3237,9 @@ export const sampleGuestData = [
     id: "m4pPAwAAQBAJ",
     etag: "VP6I1rgv8oU",
     selfLink: "https://www.googleapis.com/books/v1/volumes/m4pPAwAAQBAJ",
+    userInfo: {
+      updated: 38,
+    },
     volumeInfo: {
       title: "Beginning iOS Programming For Dummies",
       authors: ["Rajiv Ramnath"],
@@ -3235,6 +3345,9 @@ export const sampleGuestData = [
     id: "BWSTv8Q48YcC",
     etag: "mauZwfvMxmw",
     selfLink: "https://www.googleapis.com/books/v1/volumes/BWSTv8Q48YcC",
+    userInfo: {
+      updated: 39,
+    },
     volumeInfo: {
       title: "Programming in Lua",
       authors: ["Roberto Ierusalimschy"],
@@ -3312,6 +3425,9 @@ export const sampleGuestData = [
     id: "aoyZjwEACAAJ",
     etag: "c5UHPTlViDo",
     selfLink: "https://www.googleapis.com/books/v1/volumes/aoyZjwEACAAJ",
+    userInfo: {
+      updated: 40,
+    },
     volumeInfo: {
       title: "A Primer on Scientific Programming with Python",
       authors: ["Hans Petter Langtangen"],

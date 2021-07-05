@@ -5,6 +5,7 @@ import Library from "../components/Library";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import google from "../api/googleBooks";
+import { determineBooksPerPage } from "../api/helpers";
 import { GeneralContext } from "../contexts/General";
 import { sampleUserData } from "../data";
 
@@ -14,6 +15,14 @@ import { sampleUserData } from "../data";
 const Home = () => {
   const { state, setState } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
+
+  const setBooksPerPageState = () => {
+    const booksPerPage = determineBooksPerPage();
+    if (state.booksPerPage !== booksPerPage) {
+      setState({ booksPerPage: booksPerPage });
+    }
+  };
+  setBooksPerPageState();
 
   const getUsersBooks = async () => {
     try {

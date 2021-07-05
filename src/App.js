@@ -5,18 +5,17 @@ import { SearchProvider } from "./contexts/Search";
 import { GeneralContext } from "./contexts/General";
 import { determineLocationPath, initGoogleAuth } from "./api";
 import { Routes } from "./Routes";
-import { HOME_LOCATION, GUEST_STATUS } from './constants';
-
+import { HOME_LOCATION, GUEST_STATUS } from "./constants";
 
 /**
-  *Renders app component 
-  */
+ *Renders app component
+ */
 const App = () => {
   const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
 
   /**
-   * Checks whether authentication is required then retrieves the auth status.
+   * Checks whether authentication is required, then retrieves the auth status.
    */
   const onAuthChange = () => {
     if (location === HOME_LOCATION && state.authStatus === GUEST_STATUS) {

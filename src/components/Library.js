@@ -24,6 +24,7 @@ const Library = ({ theUsersBooks }) => {
   const { state, setState } = useContext(GeneralContext);
   const location = history.location.pathname;
   let fauxData = null;
+  let fauxPaginationInfo = null;
 
   /**
    * Determines whether to provide sample data or make an api request.
@@ -67,7 +68,9 @@ const Library = ({ theUsersBooks }) => {
             fauxData = sortFunctionLength(fauxData);
           }
         }
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
 
       if (state.orderState === "down") {
         fauxData = reOrder(fauxData);
@@ -76,21 +79,28 @@ const Library = ({ theUsersBooks }) => {
   };
 
   /**
-   * Updates the react state with data to display.
+   * Process data for pagination.
    */
-  const updateState = () => {
-    // TODO: Refactor the functions in this block
-    const updatePagination = () => {
-      if (
-        fauxData !== undefined &&
-        fauxData !== null /*&& fauxData !== "empty"*/
-      ) {
-        const fauxPaginationInfo = computePagination(
+  const calcPaginationData = async () => {
+    try {
+      if (fauxData !== undefined && fauxData !== null) {
+        fauxPaginationInfo = computePagination(
           fauxData,
           state.booksPerPage,
           state.page
         );
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  /**
+   * Updates the react state with data to display.
+   */
+  const updateState = () => {
+    const updatePagination = () => {
+      if (fauxPaginationInfo !== undefined && fauxPaginationInfo !== null) {
         const paginationData = fauxPaginationInfo.paginationData;
         const totalPages = fauxPaginationInfo.totalPages;
 
@@ -98,6 +108,7 @@ const Library = ({ theUsersBooks }) => {
           paginationData: paginationData,
           totalPages: totalPages,
         });
+
         if (state.page === null) {
           setState({ page: 1 });
         }
@@ -106,7 +117,7 @@ const Library = ({ theUsersBooks }) => {
 
     const updateMasterData = () => {
       if (state.masterData === fauxData) {
-        return null;
+        return;
       } else {
         setState({ masterData: fauxData });
       }
@@ -114,7 +125,7 @@ const Library = ({ theUsersBooks }) => {
 
     const updateUserBooks = () => {
       if (state.userBooks === fauxData) {
-        return null;
+        return;
       } else if (theUsersBooks !== null && location === HOME_LOCATION) {
         setState({ userBooks: theUsersBooks });
       }
@@ -128,6 +139,7 @@ const Library = ({ theUsersBooks }) => {
   const determineAndUpdateData = async () => {
     await determineDataType();
     await sortData();
+    await calcPaginationData();
     updateState();
   };
 
