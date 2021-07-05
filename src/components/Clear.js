@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
+import { HOME_LOCATION } from "../constants";
 
 /**
   *Renders clear search results button
@@ -13,7 +14,7 @@ const Clear = () => {
   const onClick = () => {
     setSearchData({ results: null });
     setState({ page: 1 });
-    history.push("/home");
+    history.push(HOME_LOCATION);
   };
 
   return (

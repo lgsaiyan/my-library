@@ -3,6 +3,7 @@ import google from "../api/googleBooks";
 import { SearchContext } from "../contexts/Search";
 import { GeneralContext } from "../contexts/General";
 import history from "../history";
+import { SEARCH_LOCATION } from "../constants";
 
 /**
  *Renders searchbar component
@@ -28,14 +29,14 @@ const SearchBar = () => {
       setSearchData({ results });
       setState({ page: 1 });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const onSubmit = async () => {
     if (term !== "") {
       query();
-      history.push("/search");
+      history.push(SEARCH_LOCATION);
     }
   };
 

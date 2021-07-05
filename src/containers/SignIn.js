@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
+import { HOME_LOCATION } from "../constants";
 import { GeneralContext } from "../contexts/General";
 
 /**
@@ -25,7 +26,7 @@ const SignIn = () => {
 
         <GoogleAuth />
 
-        <Link to="/home" className="login btn" onClick={onClick}>
+        <Link to={HOME_LOCATION} className="login btn" onClick={onClick}>
           Continue as guest
           <svg className="guest__svg">
             <use xlinkHref="/img/sprite.svg#icon-user"></use>

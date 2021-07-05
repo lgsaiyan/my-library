@@ -5,8 +5,9 @@ import Library from "../components/Library";
 import Pagination from "../components/Pagination";
 import Footer from "../components/Footer";
 import google from "../api/googleBooks";
+import { determineBooksPerPage } from "../api/helpers";
 import { GeneralContext } from "../contexts/General";
-import { sampleUserData } from "../api/sampleUserData";
+import { sampleUserData } from "../data";
 
 /**
  *Renders home page
@@ -14,7 +15,14 @@ import { sampleUserData } from "../api/sampleUserData";
 const Home = () => {
   const { state, setState } = useContext(GeneralContext);
   const [theUsersBooks, setTheUsersBooks] = useState(null);
-  console.log("I rendered Home");
+
+  const setBooksPerPageState = () => {
+    const booksPerPage = determineBooksPerPage();
+    if (state.booksPerPage !== booksPerPage) {
+      setState({ booksPerPage: booksPerPage });
+    }
+  };
+  setBooksPerPageState();
 
   const getUsersBooks = async () => {
     try {
@@ -23,7 +31,6 @@ const Home = () => {
           Authorization: `Bearer ${state.accessToken}`,
         },
       });
-      console.log(response.data.items);
       if (response.data.items !== null && response.data.items !== undefined) {
         const results = Object.values(response.data.items);
         setTheUsersBooks(results);
@@ -31,11 +38,11 @@ const Home = () => {
           setState({ usingSampleData: false });
         }
       } else {
-        setTheUsersBooks(sampleUserData());
+        setTheUsersBooks(sampleUserData);
         setState({ usingSampleData: true });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

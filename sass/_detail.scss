@@ -155,7 +155,6 @@
 
 .rate:not(:checked) > input {
   position: absolute;
-  //top:-9999px;
   visibility: hidden;
 }
 
@@ -205,7 +204,6 @@
   align-items: center;
   justify-self: center;
   padding: 1rem 0;
-  //min-width: 20rem;
   width: 50%;
 
   cursor: pointer;
@@ -251,7 +249,6 @@
   align-items: center;
   justify-self: center;
   padding: 1rem 0;
-  //min-width: 20rem;
   width: 50%;
 
   cursor: pointer;

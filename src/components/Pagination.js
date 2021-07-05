@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { GeneralContext } from "../contexts/General";
 
 /**
-  *Renders pagination component 
-  */
+ *Renders pagination component
+ */
 const Pagination = () => {
   const { state, setState } = useContext(GeneralContext);
 
@@ -57,6 +57,14 @@ const Pagination = () => {
 };
 
 export default Pagination;
+
+/**
+ * Calculates pagination data (array)
+ * @param {*} data
+ * @param {*} booksPerPage
+ * @param {*} page
+ * @returns array to be displayed in renderedList component
+ */
 
 export const computePagination = (data, booksPerPage, page) => {
   let totalBooks = data.length;
