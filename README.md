@@ -27,4 +27,6 @@ localhost:3000
 This app is very easy to use. You can log in through your Google account or as a guest. Books can be added to your library and rated.
 You can also sort your books based on a few parameters.
 
+**Note: your email must be added to "test users" in order to use Google Sign in. Alternatively, you must sign in as a guest. 
+
 Created by Levon Saiyan.
