@@ -25,7 +25,7 @@ const App = () => {
     const auth = window.gapi.auth2.getAuthInstance();
     let token = null;
     if (auth.isSignedIn.get() === true) {
-      token = auth.currentUser.ee.mc.access_token;
+      token = auth.currentUser.Td.Zb.access_token;
     }
 
     setState({ authStatus: auth.isSignedIn.get(), accessToken: token });
